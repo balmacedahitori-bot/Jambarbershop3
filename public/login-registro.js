@@ -1,3 +1,8 @@
+// ===== Configuración BASE_URL =====
+const BASE_URL = window.location.hostname === 'localhost'
+  ? 'http://localhost:3000'                 // Local
+  : 'https://tu-app.railway.app';          // Reemplaza con tu URL real en Railway
+
 // ===== Formulario de login =====
 document.addEventListener('DOMContentLoaded', () => {
   const loginForm = document.getElementById('loginForm');
@@ -19,11 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     try {
-      const response = await fetch('http://localhost:3000/api/auth/login', {
+      const response = await fetch(`${BASE_URL}/api/auth/login`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
 
@@ -34,10 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Guardar el token
+      // Guardar token y datos del usuario
       localStorage.setItem('token', data.token);
-
-      // Guardar datos del usuario
       localStorage.setItem('userRole', data.user.role);
       localStorage.setItem('userName', data.user.name);
 
@@ -66,8 +67,12 @@ document.getElementById('signupForm').addEventListener('submit', async (e) => {
   const email = document.getElementById('signup-email').value.trim();
   const password = document.getElementById('signup-password').value.trim();
 
+  // Limpiar errores anteriores
+  const registerError = document.getElementById('register-error');
+  if (registerError) registerError.textContent = '';
+
   try {
-    const res = await fetch('http://localhost:3000/api/auth/register', {
+    const res = await fetch(`${BASE_URL}/api/auth/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, password })
@@ -76,7 +81,11 @@ document.getElementById('signupForm').addEventListener('submit', async (e) => {
     const data = await res.json();
 
     if (!res.ok) {
-      alert(data.message || 'Error al crear cuenta.');
+      if (registerError) {
+        registerError.textContent = data.message || 'Error al crear cuenta.';
+      } else {
+        alert(data.message || 'Error al crear cuenta.');
+      }
       return;
     }
 
@@ -84,11 +93,12 @@ document.getElementById('signupForm').addEventListener('submit', async (e) => {
     document.querySelector('.wrapper').classList.remove('active'); // Regresa al login
 
   } catch (err) {
-    console.error('Error de registro:', err.message);
+    console.error('Error de registro:', err);
     alert('No se pudo registrar el usuario.');
   }
 });
 
+// ===== Switch entre login y registro =====
 const wrapper = document.querySelector('.wrapper');
 const showRegister = document.getElementById('showRegister');
 const showLogin = document.getElementById('showLogin');
@@ -106,12 +116,15 @@ showLogin.addEventListener('click', e => {
 });
 
 function clearErrors() {
-  document.getElementById('login-error').textContent = '';
-  document.getElementById('register-error').textContent = '';
+  const loginError = document.getElementById('login-error');
+  const registerError = document.getElementById('register-error');
+  if (loginError) loginError.textContent = '';
+  if (registerError) registerError.textContent = '';
 }
 
- if (window.history.length <= 1) {
-window.addEventListener('popstate', () => {
-  window.location.href = 'Menu.html'; // Ruta a tu página principal
-});
+// ===== Manejo del botón atrás del navegador =====
+if (window.history.length <= 1) {
+  window.addEventListener('popstate', () => {
+    window.location.href = 'Menu.html'; // Página principal
+  });
 }
