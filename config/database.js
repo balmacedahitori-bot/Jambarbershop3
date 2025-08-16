@@ -12,7 +12,8 @@ const sequelize = new Sequelize(
     logging: false,
     dialectOptions: {
       ssl: {
-        rejectUnauthorized: true
+        // Acepta certificados autofirmados
+        rejectUnauthorized: false
       }
     }
   }
