@@ -7,10 +7,19 @@ const sequelize = new Sequelize(
   process.env.DB_PASSWORD,
   {
     host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
+    port: Number(process.env.DB_PORT) || 3306,
     dialect: 'mysql',
-    logging: false
+    logging: false,
+    dialectOptions: {
+      ssl: {
+        rejectUnauthorized: true
+      }
+    }
   }
 );
+
+sequelize.authenticate()
+  .then(() => console.log('Conexión a MySQL en Railway exitosa!'))
+  .catch(err => console.error('Error de conexión:', err));
 
 module.exports = sequelize;
