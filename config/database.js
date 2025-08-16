@@ -1,26 +1,27 @@
+// config/database.js
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
 const sequelize = new Sequelize(
-  process.env.DB_NAME,
-  process.env.DB_USER,
-  process.env.DB_PASSWORD,
+  process.env.DB_NAME,       // Nombre de la base de datos
+  process.env.DB_USER,       // Usuario
+  process.env.DB_PASSWORD,   // Contraseña
   {
-    host: process.env.DB_HOST,
-    port: Number(process.env.DB_PORT) || 3306,
+    host: process.env.DB_HOST,           // Host de Railway
+    port: Number(process.env.DB_PORT),   // Puerto convertido a número
     dialect: 'mysql',
     logging: false,
     dialectOptions: {
       ssl: {
-        // Acepta certificados autofirmados
-        rejectUnauthorized: false
+        rejectUnauthorized: false       // Aceptar certificados autofirmados de Railway
       }
     }
   }
 );
 
+// Probar la conexión
 sequelize.authenticate()
-  .then(() => console.log('Conexión a MySQL en Railway exitosa!'))
-  .catch(err => console.error('Error de conexión:', err));
+  .then(() => console.log('✅ Conexión a MySQL en Railway exitosa!'))
+  .catch(err => console.error('❌ Error de conexión:', err));
 
 module.exports = sequelize;
