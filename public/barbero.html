@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Panel Barbero - JamBarber</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <link rel="stylesheet" href="admin.css" />
+  <link rel="stylesheet" href="theme.css" />
+  <link rel="stylesheet" href="barbero.css" />
+  <link rel="shortcut icon" href="img/Logo_barberia_Jam.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="admin-dashboard">
+    <!-- Botón para menú móvil -->
+    <button class="btn-menu-movil" id="btn-menu-movil">☰</button>
+    
+    <!-- Overlay para cerrar menú -->
+    <div class="overlay-menu" id="overlay-menu"></div>
+    
+    <aside class="menu-admin">
+      <h2 class="titulo-admin">JamBarber Barbero</h2>
+      <a href="Menu.html" class="link-volver-menu" title="Ir al menú">← Volver al menú</a>
+      <button id="btn-calendario">📆 Calendario</button>
+      <button id="btn-proximas">🔔 Próximas Citas</button>
+      <button id="btn-pendientes">📥 Citas Pendientes</button>
+      <button id="btn-disponibilidad">🗓️ Disponibilidad</button>
+      <button id="btn-historial">📜 Historial</button>
+      <button id="btn-clientes">🧑‍💼 Mis Clientes</button>
+      <button onclick="cerrarSesion()">Cerrar sesión</button>
+    </aside>
+
+    <main class="panel-admin">
+      <section id="barbero-contenido">
+        <h3>Bienvenido, Barbero</h3>
+        <p>Selecciona una sección del menú para comenzar</p>
+      </section>
+    </main>
+  </div>
+
+  <!-- ===== TEMPLATES HTML ===== -->
+  <template id="template-bienvenida">
+    <h3>Bienvenido, {{nombre}}</h3>
+    <p>Panel de gestión de citas de {{nombreCompleto}}</p>
+    
+    <div class="info-block">
+      <h4>📊 Estadísticas del Dashboard</h4>
+      <div class="dashboard-stats">
+        <div class="stat-card">
+          <i class="fas fa-calendar-check"></i>
+          <h4>Citas Hoy</h4>
+          <span id="citas-hoy">Cargando...</span>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-clock"></i>
+          <h4>Pendientes</h4>
+          <span id="citas-pendientes">Cargando...</span>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-users"></i>
+          <h4>Clientes</h4>
+          <span id="total-clientes">Cargando...</span>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="template-calendario">
+    <h3>📆 Mi Calendario de Citas</h3>
+    <div id="calendario-barbero"></div>
+  </template>
+
+  <template id="template-proximas">
+    <h3>🔔 Próximas Citas</h3>
+    <div class="info-block">
+      <h4>⏰ Citas Programadas</h4>
+      <div id="panel-alertas" class="alert-box"></div>
+    </div>
+  </template>
+
+  <template id="template-pendientes">
+    <h3>📥 Citas Pendientes</h3>
+    <div class="info-block">
+      <h4>📋 Lista de Citas Pendientes</h4>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Cliente</th>
+              <th>Fecha</th>
+              <th>Hora</th>
+              <th>Servicio</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-pendientes"></tbody>
+        </table>
+      </div>
+    </div>
+  </template>
+
+  <template id="template-disponibilidad">
+    <h3>🗓️ Configurar disponibilidad semanal</h3>
+    <div class="info-block">
+      <h4>⚙️ Configuración de Horarios</h4>
+      <form id="form-disponibilidad">
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Día</th>
+                <th>Hora Inicio</th>
+                <th>Hora Fin</th>
+                <th>Activo</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-disponibilidad"></tbody>
+          </table>
+        </div>
+        <button type="submit" class="btn-primary">💾 Guardar disponibilidad</button>
+        <div id="feedback-disponibilidad"></div>
+      </form>
+    </div>
+  </template>
+
+  <template id="template-historial">
+    <h3>📜 Historial de Citas Atendidas</h3>
+    <div class="info-block">
+      <h4>🔍 Filtros de Búsqueda</h4>
+      <div class="filtro-fechas">
+        <label>Desde: <input type="date" id="fecha-inicio"></label>
+        <label>Hasta: <input type="date" id="fecha-fin"></label>
+        <button onclick="barberoUI.filtrarHistorial()" class="btn-primary">🔍 Filtrar</button>
+      </div>
+    </div>
+    <div class="info-block">
+      <h4>📋 Registro de Citas Completadas</h4>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Cliente</th>
+              <th>Fecha</th>
+              <th>Hora</th>
+              <th>Servicio</th>
+              <th>Nota</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-historial"></tbody>
+        </table>
+      </div>
+    </div>
+  </template>
+
+  <template id="template-clientes">
+    <h3>🧑‍💼 Mis Clientes</h3>
+    <div class="info-block">
+      <h4>👥 Base de Datos de Clientes</h4>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Cliente</th>
+              <th>Frecuencia</th>
+              <th>Última Cita</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-clientes"></tbody>
+        </table>
+      </div>
+    </div>
+  </template>
+
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/locales-all.global.min.js"></script>
+  <script src="theme.js"></script>
+  <script src="barbero.js"></script>
+
+
+</body>
+</html>

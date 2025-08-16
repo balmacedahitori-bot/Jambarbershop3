@@ -1,0 +1,471 @@
+/* ===== RESET CSS - Configuración inicial de todos los elementos ===== */
+* {
+  margin: 0;                    /* Elimina márgenes externos */
+  padding: 0;                   /* Elimina relleno interno */
+  box-sizing: border-box;       /* Incluye padding y border en el ancho total */
+  font-family: 'Poppins', sans-serif; /* Define la fuente principal */
+}
+
+/* ===== CUERPO PRINCIPAL - Configuración del fondo y layout ===== */
+body {
+  /* Fondo con gradiente oscuro sobre imagen de barbería */
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('img/Fondo_Barberia.jpg') no-repeat center center;
+  background-size: cover;       /* La imagen cubre toda la pantalla */
+  background-attachment: fixed; /* Fondo fijo para mejor rendimiento */
+  color: #fff;                  /* Color de texto blanco */
+  min-height: 100vh;            /* Altura mínima completa de la ventana */
+  display: flex;                /* Layout flexible */
+  justify-content: center;      /* Centra horizontalmente */
+  align-items: center;          /* Centra verticalmente */
+  overflow-x: hidden;           /* Oculta scroll horizontal */
+  overflow-y: auto;             /* Permite scroll vertical si es necesario */
+  padding: 20px 0;              /* Padding vertical para evitar que toque los bordes */
+  -webkit-font-smoothing: antialiased; /* Mejor renderizado de fuentes */
+  -moz-osx-font-smoothing: grayscale;  /* Mejor renderizado en Firefox */
+}
+
+/* ===== CONTENEDOR PRINCIPAL - Wrapper del formulario ===== */
+.wrapper {
+  position: relative;           /* Posicionamiento relativo */
+  max-width: 450px;            /* Ancho máximo del contenedor */
+  width: 95%;                  /* Ancho responsivo */
+  margin: 0 auto;              /* Centra el contenedor */
+  transition: transform 0.6s ease-in-out; /* Animación suave */
+  min-height: 480px;           /* Altura mínima */
+  max-height: 90vh;            /* Altura máxima */
+}
+
+/* ===== FORMULARIOS - Estilos de los formularios de login/registro ===== */
+.form-wrapper {
+  position: absolute;           /* Posicionamiento absoluto */
+  width: 100%;                 /* Ancho completo */
+  top: 0;                      /* Alineado al tope */
+  left: 0;                     /* Alineado a la izquierda */
+  padding: 30px;               /* Espaciado interno */
+  background: rgba(34, 34, 34, 0.95); /* Fondo semi-transparente */
+  border-radius: 12px;         /* Bordes redondeados */
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5); /* Sombra */
+  transition: opacity 0.6s ease, transform 0.6s ease; /* Animaciones */
+  min-height: 100%;            /* Altura mínima completa */
+  max-height: 100%;            /* Altura máxima completa */
+  overflow-y: auto;            /* Scroll vertical si es necesario */
+  display: flex;               /* Layout flexible */
+  flex-direction: column;      /* Dirección vertical */
+  justify-content: center;     /* Centra verticalmente */
+}
+
+/* ===== TÍTULOS DE FORMULARIOS ===== */
+.form-wrapper h2 {
+  text-align: center;          /* Centra el texto */
+  margin-bottom: 24px;         /* Espacio inferior */
+  color: #e63946;              /* Color rojo característico */
+}
+
+/* ===== GRUPOS DE INPUTS - Contenedores de campos de entrada ===== */
+.input-group {
+  position: relative;           /* Para posicionar labels */
+  margin-bottom: 20px;         /* Espacio entre grupos */
+}
+
+/* ===== CAMPOS DE ENTRADA - Estilos de los inputs ===== */
+.input-group input {
+  width: 100%;                 /* Ancho completo */
+  padding: 12px 16px;          /* Espaciado interno mejorado */
+  border: none;                /* Sin bordes */
+  border-radius: 8px;          /* Bordes redondeados */
+  background: #333;            /* Fondo oscuro */
+  color: #fff;                 /* Texto blanco */
+  font-size: 1rem;             /* Tamaño de fuente */
+  transition: all 0.3s ease;   /* Transición suave */
+  min-height: 48px;            /* Altura mínima para mejor touch */
+}
+
+.input-group input:focus {
+  outline: none;               /* Sin outline por defecto */
+  background: #444;            /* Fondo más claro al focus */
+  box-shadow: 0 0 0 2px rgba(230, 57, 70, 0.3); /* Sombra roja al focus */
+}
+
+/* ===== PLACEHOLDER - Texto de ejemplo en inputs ===== */
+.input-group input::placeholder {
+  color: transparent;           /* Oculta el placeholder */
+}
+
+/* ===== LABELS - Etiquetas flotantes ===== */
+.input-group label {
+  position: absolute;           /* Posicionamiento absoluto */
+  top: -14px;                  /* Posición arriba del input */
+  left: 12px;                  /* Alineado a la izquierda */
+  font-size: 0.8rem;           /* Tamaño pequeño */
+  color: #bbb;                 /* Color gris claro */
+  pointer-events: none;        /* No interfiere con el input */
+}
+
+/* ===== CHECKBOX - Casilla de recordar contraseña ===== */
+.remember {
+  margin-bottom: 20px;         /* Espacio inferior */
+  font-size: 0.9rem;           /* Tamaño de fuente */
+}
+
+/* ===== BOTONES - Estilos de todos los botones ===== */
+button {
+  width: 100%;                 /* Ancho completo */
+  padding: 14px 20px;          /* Espaciado interno mejorado */
+  background: #e63946;         /* Color rojo */
+  border: none;                /* Sin bordes */
+  border-radius: 8px;          /* Bordes redondeados */
+  color: white;                /* Texto blanco */
+  font-size: 1.1rem;           /* Tamaño de fuente */
+  font-weight: bold;           /* Texto en negrita */
+  cursor: pointer;             /* Cursor de mano */
+  transition: all 0.3s ease;   /* Animación mejorada */
+  min-height: 52px;            /* Altura mínima para mejor touch */
+  text-transform: uppercase;   /* Texto en mayúsculas */
+  letter-spacing: 1px;         /* Espaciado entre letras */
+}
+
+/* ===== HOVER DE BOTONES - Efecto al pasar el mouse ===== */
+button:hover {
+  background: #b71c1c;         /* Rojo más oscuro */
+}
+
+/* ===== MENSAJES DE ERROR - Estilos para errores ===== */
+.login-password-error {
+  color: #ff4d4d;              /* Color rojo para errores */
+  font-size: 0.9rem;           /* Tamaño pequeño */
+  text-align: center;          /* Centrado */
+  margin-top: 10px;            /* Espacio superior */
+}
+
+/* ===== ENLACES - Links de registro e inicio de sesión ===== */
+.signUp-link,
+.signIn-link {
+  margin-top: 14px;            /* Espacio superior */
+  text-align: center;          /* Centrado */
+  font-size: 0.9rem;           /* Tamaño pequeño */
+}
+
+.signUp-link a,
+.signIn-link a {
+  color: #e63946;              /* Color rojo */
+  text-decoration: none;       /* Sin subrayado */
+  font-weight: 600;            /* Semi-negrita */
+  cursor: pointer;             /* Cursor de mano */
+}
+
+
+/* ===== VISIBILIDAD DE FORMULARIOS - Control de mostrar/ocultar ===== */
+/* Formulario de inicio de sesión - Visible por defecto */
+.sign-in {
+  z-index: 2;                  /* Capa superior */
+  opacity: 1;                  /* Visible */
+  transform: translateX(0);     /* Sin desplazamiento */
+}
+
+/* Formulario de registro - Oculto por defecto */
+.sign-up {
+  transform: translateX(100%);  /* Desplazado a la derecha */
+  opacity: 0;                  /* Invisible */
+  z-index: 1;                  /* Capa inferior */
+}
+
+/* ===== ANIMACIONES DE CAMBIO - Cuando se activa el wrapper ===== */
+/* Ocultar formulario de inicio de sesión */
+.wrapper.active .sign-in {
+  transform: translateX(-100%); /* Desplazado a la izquierda */
+  opacity: 0;                  /* Invisible */
+  z-index: 1;                  /* Capa inferior */
+}
+
+/* Mostrar formulario de registro */
+.wrapper.active .sign-up {
+  transform: translateX(0);     /* Sin desplazamiento */
+  opacity: 1;                  /* Visible */
+  z-index: 2;                  /* Capa superior */
+}
+
+/* ===== FOOTER - Pie de página fijo ===== */
+.footer-barberia {
+  position: fixed;              /* Posición fija */
+  bottom: 0;                   /* Alineado al fondo */
+  left: 0;                     /* Alineado a la izquierda */
+  width: 100%;                 /* Ancho completo */
+  background: rgba(0,0,0,0.6); /* Fondo semi-transparente */
+  color: #fff;                 /* Texto blanco */
+  text-align: center;          /* Centrado */
+  padding: 15px 0;             /* Espaciado vertical */
+  font-size: 0.9rem;           /* Tamaño pequeño */
+  letter-spacing: 1px;         /* Espaciado entre letras */
+  z-index: 1000;               /* Asegura que esté por encima */
+}
+
+/* ===== MEJORAS DE ACCESIBILIDAD Y TOUCH ===== */
+
+/* Mejorar el área de toque para elementos interactivos */
+.input-group input,
+button,
+.signUp-link a,
+.signIn-link a {
+  -webkit-tap-highlight-color: transparent; /* Elimina el highlight de toque en iOS */
+  touch-action: manipulation;               /* Optimiza para touch */
+}
+
+/* Mejorar el contraste y legibilidad */
+.input-group input::placeholder {
+  color: rgba(255, 255, 255, 0.5);         /* Placeholder más visible */
+}
+
+/* Animaciones suaves para mejor UX */
+.form-wrapper {
+  will-change: transform, opacity;          /* Optimiza las animaciones */
+}
+
+/* Mejorar el scroll en dispositivos táctiles */
+.form-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+
+.form-wrapper::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.form-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(230, 57, 70, 0.5);
+  border-radius: 3px;
+}
+
+.form-wrapper::-webkit-scrollbar-thumb:hover {
+  background: rgba(230, 57, 70, 0.7);
+}
+
+
+/* ===== RESPONSIVE - Adaptación para todos los dispositivos ===== */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 768px) {
+  .wrapper {
+    max-width: 400px;
+    width: 90%;
+    min-height: 450px;
+    margin: 20px auto;
+  }
+
+  .form-wrapper {
+    padding: 25px;
+  }
+
+  .form-wrapper h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+
+  .input-group input {
+    font-size: 1rem;
+    min-height: 46px;
+  }
+
+  button {
+    font-size: 1rem;
+    min-height: 48px;
+  }
+}
+
+/* Móviles grandes */
+@media (max-width: 480px) {
+  .wrapper {
+    max-width: 100%;
+    width: 95%;
+    min-height: 420px;
+    margin: 10px auto;
+  }
+
+  .form-wrapper {
+    padding: 20px;
+  }
+
+  .form-wrapper h2 {
+    font-size: 1.6rem;
+    margin-bottom: 18px;
+  }
+
+  .input-group {
+    margin-bottom: 16px;
+  }
+
+  .input-group input {
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    min-height: 44px;
+  }
+
+  .input-group label {
+    font-size: 0.75rem;
+    top: -12px;
+  }
+
+  button {
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    min-height: 46px;
+  }
+
+  .remember {
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+  }
+
+  .signUp-link,
+  .signIn-link {
+    font-size: 0.85rem;
+    margin-top: 12px;
+  }
+
+  .login-password-error {
+    font-size: 0.8rem;
+    margin-top: 8px;
+  }
+}
+
+/* Móviles pequeños */
+@media (max-width: 360px) {
+  .wrapper {
+    width: 98%;
+    min-height: 400px;
+    margin: 5px auto;
+  }
+
+  .form-wrapper {
+    padding: 16px;
+  }
+
+  .form-wrapper h2 {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+  }
+
+  .input-group input {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    min-height: 42px;
+  }
+
+  button {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    min-height: 44px;
+  }
+}
+
+/* Pantallas muy pequeñas (smartwatches, etc.) */
+@media (max-width: 280px) {
+  .wrapper {
+    width: 100%;
+    min-height: 380px;
+    margin: 0;
+  }
+
+  .form-wrapper {
+    padding: 12px;
+    border-radius: 8px;
+  }
+
+  .form-wrapper h2 {
+    font-size: 1.3rem;
+    margin-bottom: 14px;
+  }
+
+  .input-group input {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    min-height: 40px;
+  }
+
+  button {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    min-height: 42px;
+  }
+}
+
+/* Pantallas grandes (desktops, laptops) */
+@media (min-width: 1200px) {
+  .wrapper {
+    max-width: 500px;
+    min-height: 520px;
+  }
+
+  .form-wrapper {
+    padding: 35px;
+  }
+
+  .form-wrapper h2 {
+    font-size: 2.2rem;
+    margin-bottom: 28px;
+  }
+
+  .input-group input {
+    padding: 14px 18px;
+    font-size: 1.1rem;
+    min-height: 52px;
+  }
+
+  button {
+    padding: 16px 24px;
+    font-size: 1.2rem;
+    min-height: 56px;
+  }
+}
+
+/* Pantallas ultra anchas */
+@media (min-width: 1600px) {
+  .wrapper {
+    max-width: 550px;
+    min-height: 560px;
+  }
+
+  .form-wrapper {
+    padding: 40px;
+  }
+
+  .form-wrapper h2 {
+    font-size: 2.4rem;
+    margin-bottom: 32px;
+  }
+}
+
+/* Orientación landscape en móviles */
+@media (max-height: 500px) and (orientation: landscape) {
+  body {
+    align-items: flex-start;
+    padding: 10px 0;
+  }
+
+  .wrapper {
+    min-height: 350px;
+    max-height: 85vh;
+  }
+
+  .form-wrapper {
+    padding: 15px;
+  }
+
+  .form-wrapper h2 {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+  }
+
+  .input-group {
+    margin-bottom: 12px;
+  }
+
+  .input-group input {
+    padding: 8px 12px;
+    min-height: 40px;
+  }
+
+  button {
+    padding: 10px 16px;
+    min-height: 44px;
+  }
+}

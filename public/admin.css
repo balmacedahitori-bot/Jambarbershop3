@@ -1,0 +1,1150 @@
+/* ===== DASHBOARD ADMIN - ESTILO COHERENTE CON LA APLICACIÓN ===== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== BLOQUES DE INFORMACIÓN ===== */
+.info-block {
+  background: rgba(220,53,69,0.1);
+  border: 1px solid #dc3545;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 15px 0;
+  color: var(--text, #ffffff);
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+
+.info-block:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(220,53,69,0.2);
+  border-color: #dc3545;
+}
+
+.info-block h4 {
+  color: var(--text, #f8f9fa);
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.info-block p {
+  color: var(--text, #ffffff);
+  margin: 8px 0;
+  font-size: 1rem;
+}
+
+.info-block strong {
+  color: var(--text, #f8f9fa);
+  font-weight: 600;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg, #222); /* Color base de la aplicación */
+    color: var(--text, #f8f9fa); /* Texto blanco */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.admin-dashboard {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+/* ===== MENÚ LATERAL ===== */
+.menu-admin {
+    background: var(--sidebar-bg, linear-gradient(135deg, rgba(0,0,0,0.9), rgba(220,53,69,0.8))); /* Gradiente negro-rojo */
+    padding: 2rem 1.5rem;
+    width: 280px;
+    color: var(--text, #f8f9fa);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 1000;
+    transition: left 0.3s ease;
+}
+
+/* Enlace discreto para volver al menú */
+.menu-admin .link-volver-menu {
+    display: inline-block;
+    margin: -0.5rem 0 0.5rem 0;
+    padding: 6px 10px;
+    border-radius: 8px;
+    color: var(--text, #f8f9fa);
+    text-decoration: none;
+    font-weight: 600;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+.menu-admin .link-volver-menu:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+.menu-admin::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('img/Fondo_Barberia.jpg') center/cover;
+    opacity: 0.1;
+    z-index: -1;
+}
+
+.menu-admin h2.titulo-admin {
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--text, #f8f9fa);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    border-bottom: 2px solid #dc3545;
+    padding-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+}
+
+.menu-admin h2.titulo-admin i {
+    font-size: 2rem;
+    color: #dc3545;
+}
+
+.menu-admin button {
+    background: rgba(220,53,69,0.8);
+    border: 2px solid transparent;
+    padding: 1rem 1.2rem;
+    border-radius: 12px;
+    color: var(--text, #f8f9fa);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.menu-admin button i {
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.menu-admin button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.menu-admin button:hover::before {
+    left: 100%;
+}
+
+.menu-admin button:hover {
+    background: #dc3545;
+    border-color: #f8f9fa;
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(220,53,69,0.4);
+}
+
+.menu-admin button:active {
+    transform: translateX(5px) scale(0.98);
+}
+
+/* Botón especial para agregar servicio */
+#btn-agregar-servicio {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    border: 2px solid #28a745;
+    margin-top: auto;
+    margin-bottom: 1rem;
+}
+
+#btn-agregar-servicio:hover {
+    background: #28a745;
+    border-color: #f8f9fa;
+    box-shadow: 0 4px 15px rgba(40,167,69,0.4);
+}
+
+/* Botón cerrar sesión */
+.menu-admin button[onclick="cerrarSesion()"] {
+    background: linear-gradient(135deg, #6c757d, #495057);
+    border: 2px solid #6c757d;
+    margin-top: 1rem;
+}
+
+.menu-admin button[onclick="cerrarSesion()"]:hover {
+    background: #6c757d;
+    border-color: #f8f9fa;
+    box-shadow: 0 4px 15px rgba(108,117,125,0.4);
+}
+
+/* ===== PANEL PRINCIPAL ===== */
+.panel-admin {
+    flex-grow: 1;
+    padding: 2rem;
+    overflow-y: auto;
+    background: var(--panel-bg, linear-gradient(135deg, rgba(34,34,34,0.95), rgba(52,58,64,0.95)));
+    position: relative;
+}
+
+.panel-admin::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('img/Fondo_Barberia.jpg') center/cover;
+    opacity: 0.05;
+    z-index: -1;
+}
+
+#admin-contenido {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: var(--surface-2, rgba(0,0,0,0.3));
+    border-radius: 15px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border, rgba(220,53,69,0.2));
+}
+
+/* Contenedor equivalente para cliente */
+#cliente-contenido {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: var(--surface-2, rgba(0,0,0,0.3));
+    border-radius: 15px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border, rgba(220,53,69,0.2));
+}
+
+/* ===== TÍTULOS Y TEXTO ===== */
+h3 {
+    color: var(--text, #f8f9fa);
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    border-bottom: 2px solid #dc3545;
+    padding-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+h3 i {
+    font-size: 1.8rem;
+    color: #dc3545;
+}
+
+p {
+    color: var(--text, #ffffff);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    opacity: 1;
+}
+
+/* ===== LISTAS Y ELEMENTOS ===== */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    background: linear-gradient(135deg, rgba(220,53,69,0.1), rgba(220,53,69,0.05));
+    margin: 1rem 0;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 5px solid #dc3545;
+    border: 1px solid rgba(220,53,69,0.3);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    color: var(--text, #f2f2f2);
+}
+
+ul li:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 20px rgba(220,53,69,0.2);
+    border-color: #dc3545;
+}
+
+.cita {
+    background: linear-gradient(135deg, rgba(13,110,253,0.1), rgba(13,110,253,0.05));
+    border-left: 5px solid #0d6efd;
+    margin-bottom: 1rem;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(13,110,253,0.3);
+    transition: all 0.3s ease;
+}
+
+.cita:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 20px rgba(13,110,253,0.2);
+    border-color: #0d6efd;
+}
+
+/* ===== FORMULARIOS ===== */
+form {
+    background: var(--surface-2, rgba(0,0,0,0.4));
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid var(--border, rgba(220,53,69,0.3));
+    backdrop-filter: blur(10px);
+    margin-top: 2rem;
+}
+
+form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    margin-top: 1.5rem;
+    font-weight: 600;
+    color: var(--text, #f8f9fa);
+    font-size: 1.1rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+form input, form select, form textarea {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 0.5rem;
+    border-radius: 10px;
+    border: 2px solid var(--border, rgba(220,53,69,0.3));
+    font-size: 1rem;
+    background: var(--input-bg, rgba(0,0,0,0.6));
+    color: var(--input-text, #f8f9fa);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    font-family: 'Poppins', sans-serif;
+}
+
+form input:focus, form select:focus, form textarea:focus {
+    outline: none;
+    border-color: #dc3545;
+    box-shadow: 0 0 15px rgba(220,53,69,0.3);
+    background: rgba(0,0,0,0.8);
+}
+
+form textarea {
+    resize: vertical;
+    min-height: 80px;
+    line-height: 1.5;
+}
+
+form textarea::placeholder {
+    color: rgba(248,249,250,0.6);
+}
+
+form input::placeholder {
+    color: rgba(248,249,250,0.6);
+}
+
+form button {
+    margin-top: 1.5rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: #f8f9fa;
+    border: 2px solid #dc3545;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+form button:hover {
+    background: #dc3545;
+    border-color: #f8f9fa;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(220,53,69,0.4);
+}
+
+form button:active {
+    transform: translateY(0);
+}
+
+/* ===== BOTONES DE FORMULARIO ===== */
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.form-buttons button {
+    margin-top: 0;
+}
+
+/* ===== MENSAJES DE FEEDBACK ===== */
+#feedback-servicio, #feedback-usuario, #feedback-edicion {
+    margin-top: 1.5rem;
+    font-weight: bold;
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+#feedback-servicio.success, #feedback-usuario.success, #feedback-edicion.success {
+    background: linear-gradient(135deg, rgba(40,167,69,0.2), rgba(40,167,69,0.1));
+    border: 2px solid #28a745;
+    color: #28a745;
+}
+
+#feedback-servicio.error, #feedback-usuario.error, #feedback-edicion.error {
+    background: linear-gradient(135deg, rgba(220,53,69,0.2), rgba(220,53,69,0.1));
+    border: 2px solid #dc3545;
+    color: #dc3545;
+}
+
+/* ===== BOTONES DE ACCIÓN ===== */
+.btn-action {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0.25rem;
+}
+
+.btn-edit {
+    background: linear-gradient(135deg, #ffc107, #e0a800);
+    color: #000;
+}
+
+.btn-edit:hover {
+    background: #ffc107;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255,193,7,0.4);
+}
+
+.btn-delete {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: #f8f9fa;
+}
+
+.btn-delete:hover {
+    background: #dc3545;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(220,53,69,0.4);
+}
+
+/* ===== RESPONSIVIDAD COMPLETA PARA TODOS LOS DISPOSITIVOS ===== */
+
+/* ===== MEJORAS DE ACCESIBILIDAD Y TOUCH ===== */
+.admin-dashboard {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.menu-admin button,
+form button,
+.btn-action,
+#btn-nuevo-usuario,
+#btn-nuevo-servicio,
+#btn-nuevo-barbero {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    min-height: 44px;
+}
+
+/* ===== TABLETS Y PANTALLAS MEDIANAS ===== */
+@media screen and (max-width: 1024px) {
+    .menu-admin {
+        width: 260px;
+        padding: 1.5rem 1rem;
+    }
+    
+    .menu-admin h2.titulo-admin {
+        font-size: 1.6rem;
+        margin-bottom: 2rem;
+    }
+    
+    .panel-admin {
+        padding: 1.5rem;
+    }
+    
+    #admin-contenido {
+        padding: 1.5rem;
+    }
+    
+    h3 {
+        font-size: 1.8rem;
+    }
+    
+    form {
+        padding: 1.5rem;
+    }
+}
+
+/* ===== TABLETS PEQUEÑAS ===== */
+@media screen and (max-width: 768px) {
+    .admin-dashboard {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    .menu-admin {
+        width: 100%;
+        padding: 0.8rem;
+        position: relative;
+        order: 1;
+        max-height: 60vh;
+        overflow-y: auto;
+    }
+    
+    .menu-admin h2.titulo-admin {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.6rem;
+    }
+    
+    .menu-admin button {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.85rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .panel-admin {
+        padding: 0.8rem;
+        order: 2;
+        flex: 1;
+        min-height: 40vh;
+    }
+    
+    #admin-contenido {
+        padding: 0.8rem;
+    }
+    
+    h3 {
+        font-size: 1.4rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    form {
+        padding: 0.8rem;
+    }
+    
+    form input, form select {
+        padding: 0.7rem;
+        font-size: 0.9rem;
+    }
+    
+    ul li {
+        padding: 0.8rem;
+        margin: 0.6rem 0;
+    }
+    
+    .btn-action {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* ===== MÓVILES GRANDES ===== */
+@media screen and (max-width: 480px) {
+    .admin-dashboard {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    .menu-admin {
+        width: 100%;
+        padding: 0.6rem;
+        max-height: 50vh;
+        overflow-y: auto;
+        order: 1;
+    }
+    
+    .menu-admin h2.titulo-admin {
+        font-size: 1.2rem;
+        margin-bottom: 0.8rem;
+        padding-bottom: 0.4rem;
+    }
+    
+    .menu-admin button {
+        padding: 0.5rem 0.6rem;
+        font-size: 0.8rem;
+        margin-bottom: 0.2rem;
+    }
+    
+    .menu-admin button i {
+        font-size: 0.9rem;
+        width: 16px;
+    }
+    
+    .panel-admin {
+        padding: 0.6rem;
+        order: 2;
+        flex: 1;
+        min-height: 50vh;
+    }
+    
+    #admin-contenido {
+        padding: 0.6rem;
+    }
+    
+    h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.6rem;
+    }
+    
+    h3 i {
+        font-size: 1.3rem;
+    }
+    
+    p {
+        font-size: 0.95rem;
+        line-height: 1.4;
+    }
+    
+    form {
+        padding: 0.6rem;
+    }
+    
+    form label {
+        font-size: 0.95rem;
+        margin-top: 0.8rem;
+    }
+    
+    form input, form select {
+        padding: 0.6rem;
+        font-size: 0.85rem;
+    }
+    
+    form button {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    ul li {
+        padding: 0.6rem;
+        margin: 0.4rem 0;
+        font-size: 0.9rem;
+    }
+    
+    .btn-action {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+        margin: 0.15rem;
+    }
+    
+    #btn-nuevo-usuario,
+    #btn-nuevo-servicio,
+    #btn-nuevo-barbero {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* ===== MÓVILES PEQUEÑOS ===== */
+@media screen and (max-width: 360px) {
+    .panel-admin {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    
+    #admin-contenido {
+        padding: 5px;
+    }
+    
+    .info-block {
+        padding: 10px;
+        margin: 5px 0;
+    }
+    
+    .table-container {
+        margin: 5px 0;
+        border-radius: 8px;
+    }
+    
+    .table-container table {
+        min-width: 450px; /* Ancho mínimo más pequeño */
+    }
+    
+    .table-container th,
+    .table-container td {
+        padding: 6px 4px;
+        font-size: 0.75rem;
+        max-width: 100px;
+    }
+    
+    .table-container table td .btn-success,
+    .table-container table td .btn-danger {
+        width: 70px;
+        height: 28px;
+        padding: 3px 6px;
+        font-size: 0.7rem;
+        margin: 1px;
+    }
+    
+    /* Ajustar botón de menú móvil */
+    .btn-menu-movil {
+        top: 5px;
+        left: 5px;
+        padding: 6px 10px;
+        font-size: 1rem;
+    }
+    
+    /* Ajustar menú lateral */
+    .admin-dashboard .menu-admin {
+        width: 90% !important;
+    }
+    
+    .admin-dashboard .menu-admin button {
+        padding: 0.5rem 0.6rem !important;
+        font-size: 0.8rem !important;
+        margin: 0.1rem 0 !important;
+    }
+}
+
+/* ===== PANTALLAS MUY PEQUEÑAS ===== */
+@media screen and (max-width: 280px) {
+    .menu-admin {
+        padding: 0.5rem;
+    }
+    
+    .menu-admin h2.titulo-admin {
+        font-size: 1.1rem;
+    }
+    
+    .menu-admin button {
+        padding: 0.5rem 0.6rem;
+        font-size: 0.75rem;
+    }
+    
+    .panel-admin {
+        padding: 0.5rem;
+    }
+    
+    #admin-contenido {
+        padding: 0.5rem;
+    }
+    
+    h3 {
+        font-size: 1.1rem;
+    }
+    
+    form {
+        padding: 0.5rem;
+    }
+    
+    form input, form select {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* ===== PANTALLAS GRANDES (DESKTOPS) ===== */
+@media screen and (min-width: 1200px) {
+    .menu-admin {
+        width: 300px;
+        padding: 2.5rem 2rem;
+    }
+    
+    .menu-admin h2.titulo-admin {
+        font-size: 2rem;
+        margin-bottom: 3rem;
+    }
+    
+    .menu-admin button {
+        padding: 1.2rem 1.5rem;
+        font-size: 1.1rem;
+    }
+    
+    .panel-admin {
+        padding: 2.5rem;
+    }
+    
+    #admin-contenido {
+        padding: 2.5rem;
+    }
+    
+    h3 {
+        font-size: 2.2rem;
+        margin-bottom: 2rem;
+    }
+    
+    form {
+        padding: 2.5rem;
+    }
+    
+    form input, form select {
+        padding: 1.2rem;
+        font-size: 1.1rem;
+    }
+    
+    form button {
+        padding: 1.2rem 2.5rem;
+        font-size: 1.2rem;
+    }
+}
+
+/* ===== PANTALLAS ULTRA ANCHAS ===== */
+@media screen and (min-width: 1600px) {
+    .menu-admin {
+        width: 320px;
+        padding: 3rem 2.5rem;
+    }
+    
+    .menu-admin h2.titulo-admin {
+        font-size: 2.2rem;
+        margin-bottom: 3.5rem;
+    }
+    
+    .panel-admin {
+        padding: 3rem;
+    }
+    
+    #admin-contenido {
+        padding: 3rem;
+    }
+    
+    h3 {
+        font-size: 2.4rem;
+    }
+}
+
+/* ===== ORIENTACIÓN LANDSCAPE EN MÓVILES ===== */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .admin-dashboard .menu-admin {
+        width: 70% !important;
+        max-height: 100vh;
+        overflow-y: auto;
+    }
+    
+    .panel-admin {
+        padding-top: 50px;
+    }
+    
+    .table-container {
+        max-height: 60vh;
+        overflow-y: auto;
+    }
+    
+    .info-block {
+        max-height: 50vh;
+        overflow-y: auto;
+    }
+}
+
+/* ===== MEJORAS DE SCROLL ===== */
+.panel-admin::-webkit-scrollbar {
+    width: 8px;
+}
+
+.panel-admin::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.panel-admin::-webkit-scrollbar-thumb {
+    background: rgba(220, 53, 69, 0.5);
+    border-radius: 4px;
+}
+
+.panel-admin::-webkit-scrollbar-thumb:hover {
+    background: rgba(220, 53, 69, 0.7);
+}
+
+/* ===== MEJORAS PARA MÓVILES MUY PEQUEÑOS ===== */
+
+/* ===== MENÚ MÓVIL PARA ADMIN ===== */
+
+/* Estado inicial del botón - oculto por defecto */
+.btn-menu-movil {
+    display: none;
+}
+
+/* Regla base para el menú móvil - debe ser más específica que la regla base */
+.admin-dashboard .menu-admin {
+    position: relative;
+    z-index: 1000;
+    transition: left 0.3s ease;
+}
+
+@media screen and (max-width: 480px) {
+    .admin-dashboard {
+        position: relative;
+    }
+    
+    /* Regla más específica para móviles */
+    .admin-dashboard .menu-admin {
+        position: fixed !important;
+        top: 0 !important;
+        left: -100% !important;
+        width: 85% !important;
+        height: 100vh !important;
+        z-index: 2000 !important;
+        transition: left 0.3s ease !important;
+        max-height: none !important;
+        overflow-y: auto !important;
+        background: var(--sidebar-bg, linear-gradient(135deg, rgba(0,0,0,0.9), rgba(220,53,69,0.8))) !important;
+    }
+    
+    .admin-dashboard .menu-admin.menu-abierto {
+        left: 0 !important;
+    }
+    
+    .panel-admin {
+        width: 100%;
+        margin-left: 0;
+        padding-top: 60px; /* Espacio para el botón hamburguesa */
+    }
+    
+    /* Botón para abrir/cerrar menú */
+    .btn-menu-movil {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 2001;
+        background: #dc3545;
+        border: none;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        display: block !important;
+    }
+    
+    .overlay-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    .overlay-menu.visible {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    /* Asegurar que el menú se muestre cuando está abierto */
+    .admin-dashboard .menu-admin.menu-abierto {
+        left: 0 !important;
+        transform: none !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+}
+
+/* ===== OCULTAR BOTÓN BARBEROS (según código original) ===== */
+#btn-barberos {
+    display: none;
+}
+
+/* ===== BOTONES "NUEVO" ===== */
+#btn-nuevo-usuario,
+#btn-nuevo-servicio,
+#btn-nuevo-barbero {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    border: 2px solid #28a745;
+    color: #f8f9fa;
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 1rem 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 15px rgba(40,167,69,0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+#btn-nuevo-usuario::before,
+#btn-nuevo-servicio::before,
+#btn-nuevo-barbero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+#btn-nuevo-usuario:hover::before,
+#btn-nuevo-servicio:hover::before,
+#btn-nuevo-barbero:hover::before {
+    left: 100%;
+}
+
+#btn-nuevo-usuario:hover,
+#btn-nuevo-servicio:hover,
+#btn-nuevo-barbero:hover {
+    background: #28a745;
+    border-color: #f8f9fa;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(40,167,69,0.4);
+}
+
+#btn-nuevo-usuario:active,
+#btn-nuevo-servicio:active,
+#btn-nuevo-barbero:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* Estado cuando el formulario está abierto */
+.btn-formulario-abierto {
+    background: linear-gradient(135deg, #dc3545, #c82333) !important;
+    border-color: #dc3545 !important;
+}
+
+.btn-formulario-abierto:hover {
+    background: #dc3545 !important;
+    box-shadow: 0 6px 20px rgba(220,53,69,0.4) !important;
+}
+
+/* ===== TABLAS PARA APARTADOS ===== */
+.table-container {
+    background: var(--surface-2, rgba(52,58,64,0.6));
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 20px 0;
+    border: 1px solid var(--border, rgba(52,58,64,0.6));
+    backdrop-filter: blur(10px);
+    /* Agregar scroll horizontal para móviles */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: transparent;
+    /* Asegurar que la tabla mantenga su ancho mínimo */
+    min-width: 600px;
+}
+
+th, td {
+    padding: 15px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border, rgba(255,255,255,0.08));
+    color: var(--text, #f8f9fa);
+    /* Evitar que el texto se corte */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+}
+
+th {
+    background: linear-gradient(135deg, var(--border, rgba(255,255,255,0.08)), var(--surface-2, rgba(52,58,64,0.1)));
+    color: var(--text, #f8f9fa);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    /* Mantener headers fijos */
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+tr:nth-child(even) {
+    background: var(--surface-2, rgba(52,58,64,0.3));
+}
+
+tr:nth-child(odd) {
+    background: var(--surface, rgba(52,58,64,0.1));
+}
+
+/* ===== MEJORAS DE SCROLL PARA TABLAS ===== */
+.table-container::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: rgba(220, 53, 69, 0.5);
+    border-radius: 3px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(220, 53, 69, 0.7);
+}
+
+    /* Mejorar tablas en móviles */
+    .table-container {
+        margin: 10px 0;
+        border-radius: 10px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        /* Agregar indicador visual de scroll */
+        background: linear-gradient(90deg, 
+            var(--surface-2, rgba(52,58,64,0.6)) 0%, 
+            var(--surface-2, rgba(52,58,64,0.6)) 95%, 
+            rgba(220,53,69,0.3) 100%);
+    }
+    
+    .table-container table {
+        min-width: 500px; /* Reducir ancho mínimo para móviles */
+    }
+    
+    .table-container th,
+    .table-container td {
+        padding: 8px 6px;
+        font-size: 0.8rem;
+        max-width: 120px; /* Reducir ancho máximo en móviles */
+    }
+    
+    /* Mejorar botones en tablas móviles */
+    .table-container table td .btn-success,
+    .table-container table td .btn-danger {
+        width: 80px;
+        height: 32px;
+        padding: 4px 8px;
+        font-size: 0.75rem;
+        margin: 2px;
+    }
+
+
+

@@ -1,0 +1,1588 @@
+/* ===== DASHBOARD BARBERO - ESTILOS ESPECÍFICOS ===== */
+
+/* 📆 Calendario con estética del dashboard */
+#calendario-barbero {
+  max-width: 1100px;
+  margin: 20px auto 0;
+  background: rgba(0,0,0,0.3);
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+  border: 1px solid rgba(220,53,69,0.2);
+  overflow: hidden; /* Prevenir overflow */
+}
+
+/* Estilos para los botones del calendario */
+.fc .fc-toolbar {
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.fc .fc-toolbar-title {
+  color: var(--text, #f8f9fa);
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.fc .fc-button-primary {
+  background: var(--surface-2, #343a40);
+  border: 1px solid var(--border, #495057);
+  color: var(--text, #f8f9fa);
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.fc .fc-button-primary:hover,
+.fc .fc-button-primary:focus {
+  background: var(--surface, #495057);
+  border-color: var(--border, #6c757d);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.fc-theme-standard td, .fc-theme-standard th {
+  border-color: var(--border, #3a3a3a);
+}
+
+.fc .fc-col-header-cell {
+  background: transparent;
+}
+
+.fc .fc-daygrid-day-number, .fc .fc-col-header-cell-cushion {
+  color: var(--text, #f1f1f1);
+}
+
+.fc .fc-day-today {
+  background: rgba(220,53,69,0.15) !important;
+}
+
+.fc .fc-daygrid-day.fc-day:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+/* ===== AJUSTES DEL SIDEBAR PARA VISIBILIDAD COMPLETA ===== */
+.menu-admin {
+    padding: 0.5rem 0.6rem !important;
+    gap: 0.2rem !important;
+    min-height: 100vh !important;
+    overflow-y: auto !important;
+}
+
+.menu-admin button {
+    margin: 0.2rem 0 !important;
+    padding: 0.6rem 0.8rem !important;
+    font-size: 0.9rem !important;
+}
+
+.menu-admin button[onclick="cerrarSesion()"] {
+    background: linear-gradient(135deg, #6c757d, #495057);
+    border: 2px solid #6c757d;
+    margin-top: 0.3rem !important;
+    color: var(--text, #f8f9fa);
+    font-weight: 600;
+    display: block !important;
+    width: 100%;
+    padding: 0.6rem 0.8rem !important;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.9rem !important;
+}
+
+.menu-admin button[onclick="cerrarSesion()"]:hover {
+    background: #6c757d;
+    border-color: #f8f9fa;
+    box-shadow: 0 4px 15px rgba(108,117,125,0.4);
+    transform: translateX(5px);
+}
+
+.menu-admin button[onclick="cerrarSesion()"]:active {
+    transform: translateX(5px) scale(0.98);
+}
+
+/* Forzar visibilidad del botón de cerrar sesión en todos los casos */
+.menu-admin button[onclick="cerrarSesion()"] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 999 !important;
+    color: var(--text, #f8f9fa) !important;
+    font-weight: 600 !important;
+    padding: 0.6rem 0.8rem !important;
+    border-radius: 12px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    text-align: left !important;
+    width: 100% !important;
+    margin-top: 0.3rem !important;
+    font-size: 0.9rem !important;
+}
+
+/* ===== BLOQUES DE INFORMACIÓN ===== */
+.info-block {
+  background: var(--surface-2, #342828);
+  border: 1px solid #dc3545;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 15px 0;
+  color: var(--text, #ffffff);
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+
+.info-block:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(220,53,69,0.2);
+  border-color: #dc3545;
+}
+
+.info-block h4 {
+  color: var(--text, #f8f9fa);
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.info-block p {
+  color: var(--text, #ffffff);
+  margin: 8px 0;
+  font-size: 1rem;
+}
+
+.info-block strong {
+  color: var(--text, #f8f9fa);
+  font-weight: 600;
+}
+
+/* ===== DASHBOARD STATS ===== */
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, rgba(220,53,69,0.1), rgba(220,53,69,0.05));
+    border: 1px solid rgba(220,53,69,0.3);
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(220,53,69,0.3);
+    border-color: rgba(220,53,69,0.5);
+}
+
+.stat-card i {
+    font-size: 2.5rem;
+    color: var(--text, #f8f9fa);
+    margin-bottom: 15px;
+    display: block;
+}
+
+.stat-card h4 {
+    color: var(--text, #f8f9fa);
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.stat-card span {
+    color: var(--text, #f8f9fa);
+    font-size: 2rem;
+    font-weight: bold;
+    display: block;
+}
+
+/* ===== TABLAS PARA APARTADOS ===== */
+.table-container {
+    background: var(--surface-2, rgba(52,58,64,0.6));
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 20px 0;
+    border: 1px solid var(--border, rgba(52,58,64,0.6));
+    backdrop-filter: blur(10px);
+    /* Agregar scroll horizontal para móviles */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: transparent;
+    /* Asegurar que la tabla mantenga su ancho mínimo */
+    min-width: 600px;
+}
+
+th, td {
+    padding: 15px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border, rgba(255,255,255,0.08));
+    color: var(--text, #f8f9fa);
+    /* Evitar que el texto se corte */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+}
+
+th {
+    background: linear-gradient(135deg, var(--border, rgba(255,255,255,0.08)), var(--surface-2, rgba(52,58,64,0.1)));
+    color: var(--text, #f8f9fa);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    /* Mantener headers fijos */
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+tr:nth-child(even) {
+    background: var(--surface-2, rgba(52,58,64,0.3));
+}
+
+tr:nth-child(odd) {
+    background: var(--surface, rgba(52,58,64,0.1));
+}
+
+/* ===== FILTRO DE BÚSQUEDA ===== */
+.filtro-fechas {
+    background: var(--surface-2, rgba(52,58,64,0.6));
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid var(--border, rgba(52,58,64,0.6));
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.filtro-fechas label {
+    color: var(--text, #f8f9fa);
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filtro-fechas input[type="date"] {
+    background: var(--input-bg, rgba(52,58,64,0.8));
+    border: 1px solid var(--border, rgba(255,255,255,0.1));
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: var(--input-text, #f8f9fa);
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.filtro-fechas input[type="date"]:focus {
+    outline: none;
+    border-color: rgba(220,53,69,0.5);
+    box-shadow: 0 0 10px rgba(220,53,69,0.2);
+}
+
+.filtro-fechas button {
+    background: linear-gradient(135deg, rgba(220,53,69,0.8), rgba(220,53,69,0.6));
+    border: 1px solid rgba(220,53,69,0.3);
+    border-radius: 8px;
+    padding: 10px 20px;
+    color: var(--text, #f8f9fa);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filtro-fechas button:hover {
+    background: rgba(220,53,69,0.9);
+    border-color: rgba(220,53,69,0.5);
+    transform: translateY(-1px);
+}
+
+/* ===== BOTONES DE ACCIONES ===== */
+.btn-success, .btn-danger {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin: 2px;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    min-width: 100px; /* Ancho mínimo fijo */
+    height: 36px; /* Altura fija */
+    white-space: nowrap; /* Evitar que el texto se rompa */
+    box-sizing: border-box;
+    flex-shrink: 0; /* Evitar que se comprima */
+}
+
+/* Asegurar que la columna de acciones tenga suficiente ancho */
+.table-container table th:last-child,
+.table-container table td:last-child {
+    min-width: 250px; /* Aumentar ancho mínimo para contener ambos botones */
+    width: auto;
+    max-width: none; /* Permitir que la columna se expanda */
+}
+
+/* Asegurar que los botones se muestren correctamente en línea */
+.table-container table td:last-child {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Forzar visibilidad de ambos botones */
+.table-container table td:last-child .btn-success,
+.table-container table td:last-child .btn-danger {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #218838, #1ea085);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #dc3545, #e74c3c);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.btn-danger:hover {
+    background: linear-gradient(135deg, #c82333, #c0392b);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+}
+
+.btn-success:active, .btn-danger:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== ESTILOS PARA MENSAJES DE ESTADO ===== */
+.loading {
+    text-align: center;
+    padding: 20px;
+    color: #17a2b8;
+    font-style: italic;
+}
+
+.no-data {
+    text-align: center;
+    padding: 20px;
+    color: #6c757d;
+    font-style: italic;
+}
+
+.error {
+    text-align: center;
+    padding: 20px;
+    color: #dc3545;
+    font-weight: 500;
+}
+
+/* ===== ANIMACIONES PARA CITAS PENDIENTES ===== */
+.actualizando {
+    background: rgba(255, 193, 7, 0.1) !important;
+    position: relative;
+}
+
+.actualizando::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 193, 7, 0.2), transparent);
+    animation: loading-shimmer 1.5s infinite;
+}
+
+@keyframes loading-shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.exito {
+    background: rgba(40, 167, 69, 0.1) !important;
+    border-left: 4px solid #28a745 !important;
+}
+
+/* Animación de desaparición */
+.table-container table tr {
+    transition: all 0.5s ease;
+}
+
+/* Notificaciones */
+.notificacion-exito,
+.notificacion-error {
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Efectos hover mejorados para botones */
+.btn-success:hover,
+.btn-danger:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn-success:active,
+.btn-danger:active {
+    transform: translateY(0) scale(0.98);
+    transition: all 0.1s ease;
+}
+
+/* ===== RESPONSIVIDAD COMPLETA PARA TODOS LOS DISPOSITIVOS ===== */
+
+/* ===== MEJORAS DE ACCESIBILIDAD Y TOUCH ===== */
+.btn-success, .btn-danger,
+.filtro-fechas button,
+.filtro-fechas input[type="date"] {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    min-height: 44px;
+}
+
+/* Responsive para calendario */
+@media screen and (max-width: 768px) {
+  #calendario-barbero {
+    padding: 10px;
+    margin: 10px auto 0;
+  }
+  
+  .fc .fc-toolbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .fc .fc-toolbar-title {
+    font-size: 1rem;
+    text-align: center;
+  }
+  
+  .fc .fc-button-primary {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #calendario-barbero {
+    padding: 8px;
+    margin: 8px auto 0;
+  }
+  
+  .fc .fc-toolbar {
+    gap: 6px;
+  }
+  
+  .fc .fc-toolbar-title {
+    font-size: 0.9rem;
+  }
+  
+  .fc .fc-button-primary {
+    padding: 5px 8px;
+    font-size: 0.75rem;
+  }
+}
+
+/* ===== TABLETS Y PANTALLAS MEDIANAS ===== */
+@media screen and (max-width: 1024px) {
+    #calendario-barbero {
+        max-width: 100%;
+        margin: 15px auto 0;
+        padding: 12px;
+    }
+    
+    .dashboard-stats {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+    }
+    
+    .info-block {
+        padding: 18px;
+        font-size: 1.05rem;
+    }
+    
+    .stat-card {
+        padding: 20px;
+    }
+    
+    .stat-card i {
+        font-size: 2.2rem;
+    }
+    
+    .stat-card span {
+        font-size: 1.8rem;
+    }
+    
+    .table-container {
+        margin: 15px 0;
+    }
+    
+    th, td {
+        padding: 12px 10px;
+    }
+    
+    .filtro-fechas {
+        padding: 18px;
+        gap: 12px;
+    }
+}
+
+/* ===== TABLETS PEQUEÑAS ===== */
+@media screen and (max-width: 768px) {
+    #calendario-barbero {
+        margin: 8px auto 0;
+        padding: 8px;
+        border-radius: 10px;
+    }
+    
+    .dashboard-stats {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-top: 15px;
+    }
+    
+    .info-block {
+        padding: 12px;
+        font-size: 0.95rem;
+        margin: 10px 0;
+    }
+    
+    .info-block h4 {
+        font-size: 1rem;
+        margin-bottom: 6px;
+    }
+    
+    .stat-card {
+        padding: 15px;
+    }
+    
+    .stat-card i {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+    
+    .stat-card h4 {
+        font-size: 0.95rem;
+        margin-bottom: 6px;
+    }
+    
+    .stat-card span {
+        font-size: 1.4rem;
+    }
+    
+    .table-container {
+        margin: 12px 0;
+        border-radius: 10px;
+    }
+    
+    table {
+        font-size: 0.85rem;
+    }
+    
+    th, td {
+        padding: 8px 6px;
+        font-size: 0.8rem;
+    }
+    
+    th {
+        font-size: 0.75rem;
+        letter-spacing: 0.2px;
+    }
+    
+    .filtro-fechas {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding: 12px;
+    }
+    
+    .filtro-fechas label {
+        justify-content: space-between;
+        font-size: 0.9rem;
+    }
+    
+    .filtro-fechas input[type="date"] {
+        padding: 6px 8px;
+        font-size: 0.8rem;
+    }
+    
+    .filtro-fechas button {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+    
+    .btn-success, .btn-danger {
+        padding: 3px 6px;
+        font-size: 0.65rem;
+        margin: 1px;
+        gap: 1px;
+        min-height: 28px;
+    }
+}
+
+/* ===== MÓVILES GRANDES ===== */
+@media screen and (max-width: 480px) {
+    #calendario-barbero {
+        margin: 8px auto 0;
+        padding: 8px;
+        border-radius: 10px;
+    }
+    
+    .dashboard-stats {
+        gap: 10px;
+        margin-top: 15px;
+    }
+    
+    .info-block {
+        padding: 12px;
+        font-size: 0.95rem;
+        margin: 10px 0;
+        border-radius: 10px;
+    }
+    
+    .info-block h4 {
+        font-size: 1rem;
+        margin-bottom: 6px;
+    }
+    
+    .info-block p {
+        font-size: 0.9rem;
+        margin: 6px 0;
+    }
+    
+    .stat-card {
+        padding: 15px;
+        border-radius: 10px;
+    }
+    
+    .stat-card i {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+    
+    .stat-card h4 {
+        font-size: 0.95rem;
+        margin-bottom: 6px;
+    }
+    
+    .stat-card span {
+        font-size: 1.4rem;
+    }
+    
+    .table-container {
+        margin: 12px 0;
+        border-radius: 10px;
+    }
+    
+    table {
+        font-size: 0.85rem;
+    }
+    
+    th, td {
+        padding: 8px 6px;
+        font-size: 0.8rem;
+    }
+    
+    th {
+        font-size: 0.75rem;
+        letter-spacing: 0.2px;
+    }
+    
+    .filtro-fechas {
+        padding: 12px;
+        gap: 8px;
+        border-radius: 10px;
+    }
+    
+    .filtro-fechas label {
+        font-size: 0.9rem;
+    }
+    
+    .filtro-fechas input[type="date"] {
+        padding: 6px 8px;
+        font-size: 0.8rem;
+    }
+    
+    .filtro-fechas button {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+    
+    .btn-success, .btn-danger {
+        padding: 3px 6px;
+        font-size: 0.65rem;
+        margin: 1px;
+        gap: 1px;
+        min-height: 28px;
+    }
+}
+
+/* ===== MÓVILES PEQUEÑOS ===== */
+@media screen and (max-width: 360px) {
+    #calendario-barbero {
+        margin: 5px auto 0;
+        padding: 6px;
+        border-radius: 8px;
+    }
+    
+    .dashboard-stats {
+        gap: 8px;
+        margin-top: 12px;
+    }
+    
+    .info-block {
+        padding: 10px;
+        font-size: 0.9rem;
+        margin: 8px 0;
+        border-radius: 8px;
+    }
+    
+    .info-block h4 {
+        font-size: 0.95rem;
+        margin-bottom: 5px;
+    }
+    
+    .info-block p {
+        font-size: 0.85rem;
+        margin: 5px 0;
+    }
+    
+    .stat-card {
+        padding: 12px;
+        border-radius: 8px;
+    }
+    
+    .stat-card i {
+        font-size: 1.6rem;
+        margin-bottom: 8px;
+    }
+    
+    .stat-card h4 {
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+    }
+    
+    .stat-card span {
+        font-size: 1.3rem;
+    }
+    
+    .table-container {
+        margin: 10px 0;
+        border-radius: 8px;
+    }
+    
+    table {
+        font-size: 0.8rem;
+    }
+    
+    th, td {
+        padding: 6px 4px;
+        font-size: 0.75rem;
+    }
+    
+    th {
+        font-size: 0.7rem;
+        letter-spacing: 0.1px;
+    }
+    
+    .filtro-fechas {
+        padding: 10px;
+        gap: 6px;
+        border-radius: 8px;
+    }
+    
+    .filtro-fechas label {
+        font-size: 0.85rem;
+    }
+    
+    .filtro-fechas input[type="date"] {
+        padding: 5px 6px;
+        font-size: 0.75rem;
+    }
+    
+    .filtro-fechas button {
+        padding: 5px 10px;
+        font-size: 0.75rem;
+    }
+    
+    .btn-success, .btn-danger {
+        padding: 2px 4px;
+        font-size: 0.6rem;
+        margin: 1px;
+        gap: 1px;
+        min-height: 24px;
+        flex-shrink: 0;
+    }
+    
+        /* Asegurar que la columna de acciones tenga suficiente ancho en móviles pequeños */
+    .table-container table th:last-child,
+    .table-container table td:last-child {
+        min-width: 120px;
+        width: auto;
+    }
+    
+    .btn-success, .btn-danger {
+        padding: 2px 5px;
+        font-size: 0.6rem;
+        margin: 1px;
+        gap: 1px;
+        min-height: 26px;
+    }
+}
+
+/* ===== PANTALLAS MUY PEQUEÑAS ===== */
+@media screen and (max-width: 360px) {
+    .panel-admin {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    
+    #barbero-contenido {
+        padding: 5px;
+    }
+    
+    .info-block {
+        padding: 10px;
+        margin: 5px 0;
+    }
+    
+    .table-container {
+        margin: 5px 0;
+        border-radius: 8px;
+    }
+    
+    .table-container table {
+        min-width: 450px; /* Ancho mínimo más pequeño */
+    }
+    
+    .table-container th,
+    .table-container td {
+        padding: 6px 4px;
+        font-size: 0.75rem;
+        max-width: 100px;
+    }
+    
+    .table-container table td .btn-success,
+    .table-container table td .btn-danger {
+        width: 70px;
+        height: 28px;
+        padding: 3px 6px;
+        font-size: 0.7rem;
+        margin: 1px;
+        flex-shrink: 0;
+    }
+    
+    /* Asegurar que la columna de acciones tenga suficiente ancho en móviles */
+    .table-container table th:last-child,
+    .table-container table td:last-child {
+        min-width: 150px;
+        width: auto;
+    }
+    
+    .filtro-fechas {
+        padding: 10px;
+        gap: 8px;
+    }
+    
+    .filtro-fechas input[type="date"] {
+        padding: 6px;
+        font-size: 0.8rem;
+    }
+    
+    .filtro-fechas button {
+        padding: 8px;
+        font-size: 0.8rem;
+    }
+    
+    .stat-card {
+        padding: 10px;
+    }
+    
+    .stat-card i {
+        font-size: 1.3rem;
+    }
+    
+    .stat-card span {
+        font-size: 1.1rem;
+    }
+    
+    /* Ajustar botón de menú móvil */
+    .btn-menu-movil {
+        top: 5px;
+        left: 5px;
+        padding: 6px 10px;
+        font-size: 1rem;
+    }
+    
+    /* Ajustar menú lateral */
+    .admin-dashboard .menu-admin {
+        width: 90% !important;
+    }
+    
+    .admin-dashboard .menu-admin button {
+        padding: 0.5rem 0.6rem !important;
+        font-size: 0.8rem !important;
+        margin: 0.1rem 0 !important;
+    }
+}
+
+/* ===== PANTALLAS GRANDES (DESKTOPS) ===== */
+@media screen and (min-width: 1200px) {
+    #calendario-barbero {
+        max-width: 1200px;
+        margin: 25px auto 0;
+        padding: 20px;
+        border-radius: 18px;
+    }
+    
+    .dashboard-stats {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        margin-top: 35px;
+    }
+    
+    .info-block {
+        padding: 25px;
+        font-size: 1.15rem;
+        margin: 20px 0;
+        border-radius: 15px;
+    }
+    
+    .info-block h4 {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+    }
+    
+    .info-block p {
+        font-size: 1.1rem;
+        margin: 10px 0;
+    }
+    
+    .stat-card {
+        padding: 30px;
+        border-radius: 15px;
+    }
+    
+    .stat-card i {
+        font-size: 3rem;
+        margin-bottom: 20px;
+    }
+    
+    .stat-card h4 {
+        font-size: 1.2rem;
+        margin-bottom: 12px;
+    }
+    
+    .stat-card span {
+        font-size: 2.5rem;
+    }
+    
+    .table-container {
+        margin: 25px 0;
+        border-radius: 15px;
+    }
+    
+    th, td {
+        padding: 18px 15px;
+        font-size: 1rem;
+    }
+    
+    th {
+        font-size: 1rem;
+        letter-spacing: 0.8px;
+    }
+    
+    .filtro-fechas {
+        padding: 25px;
+        gap: 20px;
+        border-radius: 15px;
+    }
+    
+    .filtro-fechas label {
+        font-size: 1.1rem;
+    }
+    
+    .filtro-fechas input[type="date"] {
+        padding: 12px 15px;
+        font-size: 1rem;
+    }
+    
+    .filtro-fechas button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+    
+    .btn-success, .btn-danger {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        margin: 2px;
+        gap: 4px;
+        min-height: 40px;
+    }
+}
+
+/* ===== PANTALLAS ULTRA ANCHAS ===== */
+@media screen and (min-width: 1600px) {
+    #calendario-barbero {
+        max-width: 1400px;
+        margin: 30px auto 0;
+        padding: 25px;
+    }
+    
+    .dashboard-stats {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+    }
+    
+    .info-block {
+        padding: 30px;
+        font-size: 1.2rem;
+    }
+    
+    .info-block h4 {
+        font-size: 1.4rem;
+    }
+    
+    .stat-card {
+        padding: 35px;
+    }
+    
+    .stat-card i {
+        font-size: 3.5rem;
+    }
+    
+    .stat-card span {
+        font-size: 2.8rem;
+    }
+}
+
+/* ===== ORIENTACIÓN LANDSCAPE EN MÓVILES ===== */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    #calendario-barbero {
+        margin: 5px auto 0;
+        padding: 6px;
+    }
+    
+    .dashboard-stats {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 8px;
+        margin-top: 10px;
+    }
+    
+    .info-block {
+        padding: 8px;
+        font-size: 0.9rem;
+        margin: 6px 0;
+    }
+    
+    .stat-card {
+        padding: 10px;
+    }
+    
+    .stat-card i {
+        font-size: 1.5rem;
+        margin-bottom: 6px;
+    }
+    
+    .stat-card span {
+        font-size: 1.3rem;
+    }
+    
+    .table-container {
+        margin: 8px 0;
+    }
+    
+    th, td {
+        padding: 6px 4px;
+        font-size: 0.8rem;
+    }
+    
+    .filtro-fechas {
+        padding: 8px;
+        gap: 6px;
+    }
+    
+    .btn-success, .btn-danger {
+        padding: 3px 6px;
+        font-size: 0.7rem;
+        min-height: 30px;
+    }
+}
+
+/* ===== MEJORAS DE SCROLL ===== */
+.table-container::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: rgba(220, 53, 69, 0.5);
+    border-radius: 3px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(220, 53, 69, 0.7);
+}
+
+/* ===== MENÚ MÓVIL PARA BARBERO ===== */
+
+/* Estado inicial del botón - oculto por defecto */
+.btn-menu-movil {
+    display: none;
+}
+
+/* Regla base para el menú móvil - debe ser más específica que la regla base */
+.admin-dashboard .menu-admin {
+    position: relative;
+    z-index: 1000;
+    transition: left 0.3s ease;
+}
+
+@media screen and (max-width: 480px) {
+    .admin-dashboard {
+        position: relative;
+    }
+    
+    /* Regla más específica para móviles */
+    .admin-dashboard .menu-admin {
+        position: fixed !important;
+        top: 0 !important;
+        left: -100% !important;
+        width: 85% !important;
+        height: 100vh !important;
+        z-index: 2000 !important;
+        transition: left 0.3s ease !important;
+        max-height: none !important;
+        overflow-y: auto !important;
+        background: var(--sidebar-bg, linear-gradient(135deg, rgba(0,0,0,0.9), rgba(220,53,69,0.8))) !important;
+    }
+    
+    .admin-dashboard .menu-admin.menu-abierto {
+        left: 0 !important;
+    }
+    
+    .panel-admin {
+        width: 100%;
+        margin-left: 0;
+        padding-top: 60px; /* Espacio para el botón hamburguesa */
+        padding-left: 10px;
+        padding-right: 10px;
+        overflow-x: hidden;
+    }
+    
+    /* Mejorar visibilidad del contenido principal */
+    #barbero-contenido {
+        padding: 10px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Ajustar contenedores de información */
+    .info-block {
+        margin: 10px 0;
+        padding: 15px;
+        overflow-x: auto;
+    }
+    
+    /* Mejorar tablas en móviles */
+    .table-container {
+        margin: 10px 0;
+        border-radius: 10px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        /* Agregar indicador visual de scroll */
+        background: linear-gradient(90deg, 
+            var(--surface-2, rgba(52,58,64,0.6)) 0%, 
+            var(--surface-2, rgba(52,58,64,0.6)) 95%, 
+            rgba(220,53,69,0.3) 100%);
+    }
+    
+    .table-container table {
+        min-width: 500px; /* Reducir ancho mínimo para móviles */
+    }
+    
+    .table-container th,
+    .table-container td {
+        padding: 8px 6px;
+        font-size: 0.8rem;
+        max-width: 120px; /* Reducir ancho máximo en móviles */
+    }
+    
+    /* Mejorar botones en tablas móviles */
+    .table-container table td .btn-success,
+    .table-container table td .btn-danger {
+        width: 80px;
+        height: 32px;
+        padding: 4px 8px;
+        font-size: 0.75rem;
+        margin: 2px;
+    }
+    
+    /* Botón para abrir/cerrar menú */
+    .btn-menu-movil {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 2001;
+        background: #dc3545;
+        border: none;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        display: block !important;
+    }
+    
+    .overlay-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    .overlay-menu.visible {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    /* Asegurar que el menú se muestre cuando está abierto */
+    .admin-dashboard .menu-admin.menu-abierto {
+        left: 0 !important;
+        transform: none !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    /* Mejorar filtros de fechas en móviles */
+    .filtro-fechas {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 15px;
+    }
+    
+    .filtro-fechas label {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .filtro-fechas input[type="date"] {
+        width: 100%;
+        padding: 8px;
+    }
+    
+    .filtro-fechas button {
+        width: 100%;
+        justify-content: center;
+        padding: 10px;
+    }
+    
+    /* Mejorar estadísticas en móviles */
+    .dashboard-stats {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .stat-card {
+        padding: 15px;
+    }
+    
+    .stat-card i {
+        font-size: 1.5rem;
+        margin-bottom: 6px;
+    }
+    
+    .stat-card span {
+        font-size: 1.3rem;
+    }
+}
+
+/* ===== BOTONES EN TABLAS ===== */
+.table-container table td .btn-success,
+.table-container table td .btn-danger {
+    width: 100px; /* Ancho fijo para botones en tablas */
+    height: 36px; /* Altura fija */
+    margin: 2px 4px; /* Margen uniforme */
+    flex-shrink: 0; /* Evitar que se compriman */
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Contenedor para botones de acción en tablas */
+.table-container table td {
+    vertical-align: middle;
+    padding: 8px 12px;
+}
+
+/* Forzar visibilidad de todos los botones en tablas */
+.table-container table td button {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* Asegurar que los botones se alineen correctamente */
+.table-container table td:last-child {
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* ===== ORIENTACIÓN LANDSCAPE EN MÓVILES ===== */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .admin-dashboard .menu-admin {
+        width: 70% !important;
+        max-height: 100vh;
+        overflow-y: auto;
+    }
+    
+    .panel-admin {
+        padding-top: 50px;
+    }
+    
+    .table-container {
+        max-height: 60vh;
+        overflow-y: auto;
+    }
+    
+    .info-block {
+        max-height: 50vh;
+        overflow-y: auto;
+    }
+    
+    .dashboard-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+    
+    .stat-card {
+        padding: 8px;
+    }
+    
+    .stat-card i {
+        font-size: 1.2rem;
+    }
+    
+    .stat-card span {
+        font-size: 1rem;
+    }
+}
+
+/* ===== BLOQUES DE CITAS PROGRAMADAS ===== */
+
+/* Encabezado del bloque */
+.bloque-header {
+  margin-bottom: 0;
+}
+
+.bloque-header > div {
+  background: #1a1a1a !important;
+  color: #ecf0f1 !important;
+  padding: 12px 15px !important;
+  border-radius: 6px 6px 0 0 !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  border: 1px solid #333 !important;
+  text-transform: capitalize !important;
+}
+
+/* Contenedor de citas del bloque */
+.bloque-citas {
+  background: #1a1a1a !important;
+  border-radius: 6px !important;
+  margin-bottom: 15px !important;
+  overflow: hidden !important;
+  border: 1px solid #333 !important;
+}
+
+/* Elementos individuales de cita */
+.alert-item {
+  padding: 12px 15px !important;
+  border-bottom: 1px solid #333 !important;
+  transition: background-color 0.2s !important;
+  background: #1a1a1a !important;
+  border-radius: 6px !important;
+  margin-bottom: 8px !important;
+  border: 1px solid #333 !important;
+}
+
+.alert-item:hover {
+  background-color: #2a2a2a !important;
+}
+
+/* Encabezado de la cita */
+.alert-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 5px !important;
+}
+
+/* Hora de la cita */
+.alert-time {
+  font-weight: 600 !important;
+  color: #ecf0f1 !important;
+}
+
+/* Cliente */
+.alert-client {
+  font-weight: 500 !important;
+  color: #ecf0f1 !important;
+}
+
+/* Servicio */
+.alert-service {
+  color: #bdc3c7 !important;
+  font-size: 13px !important;
+}
+
+/* Remover borde de la última cita */
+.bloque-citas .alert-item:last-child,
+.bloque-citas .alert-item.last-item {
+  border-bottom: none !important;
+}
+
+/* ===== MODO CLARO PARA BLOQUES DE CITAS ===== */
+[data-theme="light"] .bloque-header > div {
+  background: #ffffff !important;
+  color: #2c3e50 !important;
+  border: 1px solid #e0e0e0 !important;
+}
+
+[data-theme="light"] .bloque-citas {
+  background: #ffffff !important;
+  border: 1px solid #e0e0e0 !important;
+}
+
+[data-theme="light"] .alert-item {
+  background: #ffffff !important;
+  border: 1px solid #e0e0e0 !important;
+  border-bottom: 1px solid #e0e0e0 !important;
+}
+
+[data-theme="light"] .alert-item:hover {
+  background-color: #f8f9fa !important;
+}
+
+[data-theme="light"] .alert-time {
+  color: #2c3e50 !important;
+}
+
+[data-theme="light"] .alert-client {
+  color: #2c3e50 !important;
+}
+
+[data-theme="light"] .alert-service {
+  color: #6c757d !important;
+}
+
+/* ===== RESPONSIVE PARA BLOQUES ===== */
+@media screen and (max-width: 768px) {
+  .bloque-header > div {
+    font-size: 12px !important;
+    padding: 6px 10px !important;
+  }
+  
+  .alert-item {
+    padding: 10px 12px !important;
+  }
+  
+  .alert-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 3px !important;
+  }
+  
+  .alert-time,
+  .alert-client {
+    font-size: 13px !important;
+  }
+  
+  .alert-service {
+    font-size: 12px !important;
+  }
+}
+
+

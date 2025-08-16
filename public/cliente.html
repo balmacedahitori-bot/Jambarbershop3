@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Panel Cliente - JamBarber</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <link rel="stylesheet" href="admin.css" />
+  <link rel="stylesheet" href="theme.css" />
+  <link rel="stylesheet" href="cliente.css" />
+  <link rel="shortcut icon" href="img/Logo_barberia_Jam.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="admin-dashboard">
+    <!-- Botón para menú móvil -->
+    <button class="btn-menu-movil" id="btn-menu-movil">☰</button>
+    
+    <!-- Overlay para cerrar menú -->
+    <div class="overlay-menu" id="overlay-menu"></div>
+    
+    <aside class="menu-admin">
+      <h2 class="titulo-admin">JamBarber Cliente</h2>
+        <a href="Menu.html" class="link-volver-menu" title="Ir al menú">← Volver al menú</a>
+      <button id="btn-agendar-side">Agendar cita</button>
+      <button id="btn-calendario">Calendario</button>
+      <button id="btn-historial">Historial de citas</button>
+      <button onclick="cerrarSesion()">Cerrar sesión</button>
+    </aside>
+
+    <main class="panel-admin">
+      <section id="cliente-contenido">
+        <h3>Bienvenido</h3>
+        <p>Cargando información...</p>
+      </section>
+    </main>
+  </div>
+
+  <!-- 📅 Modal de cita (global) -->
+  <div id="modal-cita" class="modal hidden">
+    <div class="modal-content">
+      <span class="cerrar">&times;</span>
+      <h2><i class="fa-solid fa-calendar-check"></i> Agendar nueva cita</h2>
+      <form id="form-cita">
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" required />
+
+        <label for="hora">Hora:</label>
+        <select id="hora" required>
+          <option disabled selected>Selecciona una hora</option>
+        </select>
+
+        <label for="servicio">Servicio:</label>
+        <select id="servicio" required>
+          <option disabled selected>Selecciona un servicio</option>
+        </select>
+
+        <label for="barbero">Barbero:</label>
+        <select id="barbero" required>
+          <option disabled selected>Selecciona un barbero</option>
+        </select>
+
+        <button type="submit"><i class="fa-solid fa-check"></i> Confirmar cita</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/locales-all.global.min.js"></script>
+  <script src="theme.js"></script>
+  <script src="cliente.js"></script>
+  
+</body>
+</html>

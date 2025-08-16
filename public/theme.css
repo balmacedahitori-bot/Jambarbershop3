@@ -1,0 +1,100 @@
+/* Tema global: oscuro (por defecto) y claro (día) */
+
+:root[data-theme="dark"] {
+  --bg: #121212;
+  --text: #f5f5f5;
+  --muted: #cfcfcf;
+  --surface: #1c1c1c;
+  --surface-2: #232323;
+  --border: rgba(255,255,255,0.12);
+  --sidebar-bg: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(220,53,69,0.8));
+  --panel-bg: linear-gradient(135deg, rgba(34,34,34,0.95), rgba(52,58,64,0.95));
+  --modal-bg: linear-gradient(135deg, rgba(34,34,34,0.98), rgba(52,58,64,0.98));
+  --input-bg: #1a1a1a;
+  --input-text: #ffffff;
+}
+
+:root[data-theme="light"] {
+  --bg: #f8f9fb;
+  --text: #1f1f1f;
+  --muted: #4c4c4c;
+  --surface: #ffffff;
+  --surface-2: #f1f3f5;
+  --border: rgba(0,0,0,0.12);
+  --sidebar-bg: linear-gradient(135deg, #ffffff, #ffe3e6);
+  --panel-bg: linear-gradient(135deg, #ffffff, #f1f3f5);
+  --modal-bg: linear-gradient(135deg, #ffffff, #f4f6f8);
+  --input-bg: #ffffff;
+  --input-text: #1f1f1f;
+}
+
+/* Aplicación general */
+html, body {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+/* Menú principal (index)
+   Nota: No sobreescribimos fondos/secciones para respetar el diseño original (divisiones sutiles).
+   Si quieres ajustar solo el color del texto en modo claro/oscuro, podemos hacerlo de forma localizada. */
+
+/* Dashboard (admin y cliente) */
+.menu-admin { background: var(--sidebar-bg) !important; color: var(--text) !important; }
+.menu-admin h2, .menu-admin button, .menu-admin .link-volver-menu { color: var(--text) !important; }
+.panel-admin { background: var(--panel-bg) !important; }
+#admin-contenido, #cliente-contenido { background: var(--surface-2) !important; border: 1px solid var(--border) !important; }
+h3, p, ul li { color: var(--text) !important; }
+
+/* Formularios y modales */
+.modal-content { background: var(--modal-bg) !important; color: var(--text) !important; border: 1px solid var(--border) !important; }
+form input, form select, form textarea { background: var(--input-bg) !important; color: var(--input-text) !important; border: 1px solid var(--border) !important; }
+
+/* FullCalendar (ajustes mínimos para textos) */
+.fc .fc-toolbar-title, .fc .fc-daygrid-day-number, .fc .fc-col-header-cell-cushion { color: var(--text) !important; }
+.fc-theme-standard td, .fc-theme-standard th { border-color: var(--border) !important; }
+
+/* Botón flotante opcional si no hay switch en el HTML */
+/* Botón en pestaña (derecha) */
+.theme-toggle-tab {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 72px;
+  padding: 8px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.05)), var(--surface-2, #232323);
+  color: var(--text, #ffffff);
+  border-left: 2px solid #dc3545;
+  border-top: 1px solid var(--border, rgba(255,255,255,0.12));
+  border-bottom: 1px solid var(--border, rgba(255,255,255,0.12));
+  border-top-left-radius: 14px;
+  border-bottom-left-radius: 14px;
+  box-shadow: -10px 0 24px rgba(0,0,0,0.35);
+  cursor: pointer;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  user-select: none;
+  backdrop-filter: blur(6px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.theme-toggle-tab:hover {
+  transform: translate(-4px, -50%);
+  filter: brightness(1.05);
+  box-shadow: -14px 0 28px rgba(0,0,0,0.45);
+}
+
+.theme-toggle-tab::before {
+  content: attr(data-icon);
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: currentColor;
+}
+
+

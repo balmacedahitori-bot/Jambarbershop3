@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Panel Admin - JamBarber</title>
+  <link rel="stylesheet" href="admin.css" />
+  <link rel="stylesheet" href="theme.css" />
+  <link rel="shortcut icon" href="img/Logo_barberia_Jam.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="admin-dashboard">
+    <!-- Botón para menú móvil -->
+    <button class="btn-menu-movil" id="btn-menu-movil">☰</button>
+    
+    <!-- Overlay para cerrar menú -->
+    <div class="overlay-menu" id="overlay-menu"></div>
+    
+    <aside class="menu-admin">
+      <h2 class="titulo-admin">JamBarber Admin</h2>
+                                <a href="Menu.html" class="link-volver-menu" title="Ir al menú">← Volver al menú</a>
+      <button id="btn-usuarios">Usuarios</button>
+      <button id="btn-barberos">Barberos</button>
+      <button id="btn-servicios">Servicios</button>
+      <button id="btn-citas">Citas</button>
+      <button onclick="cerrarSesion()">Cerrar sesión</button>
+    </aside>
+
+    <main class="panel-admin">
+      <section id="admin-contenido">
+        <h3>Bienvenido, Admin</h3>
+        <p>Selecciona una sección del menú para comenzar</p>
+      </section>
+    </main>
+  </div>
+
+  <!-- ===== TEMPLATES HTML ===== -->
+  
+  <!-- Template para lista de usuarios -->
+  <template id="usuarios-template">
+    <h3>👥 Usuarios registrados</h3>
+    <button id="btn-nuevo-usuario">➕ Nuevo usuario</button>
+    <ul id="lista-usuarios"></ul>
+    <div id="form-usuario-container"></div>
+  </template>
+
+  <!-- Template para item de usuario -->
+  <template id="usuario-item-template">
+    <li class="usuario-item">
+      <strong class="usuario-nombre"></strong> – <span class="usuario-rol"></span><br>
+      <span class="usuario-email"></span><br>
+      <button class="btn-action btn-edit" data-action="editar">✏️ Editar</button>
+      <button class="btn-action btn-delete" data-action="eliminar">🗑️ Eliminar</button>
+    </li>
+  </template>
+
+  <!-- Template para lista de barberos -->
+  <template id="barberos-template">
+    <h3>💈 Barberos disponibles</h3>
+    <button id="btn-nuevo-barbero">➕ Nuevo barbero</button>
+    <ul id="lista-barberos"></ul>
+    <div id="form-barbero-container"></div>
+  </template>
+
+  <!-- Template para item de barbero -->
+  <template id="barbero-item-template">
+    <li class="barbero-item">
+      <strong class="barbero-nombre"></strong> – <span class="barbero-email"></span><br>
+      <button class="btn-action btn-edit" data-action="editar">✏️ Editar</button>
+      <button class="btn-action btn-delete" data-action="eliminar">🗑️ Eliminar</button>
+    </li>
+  </template>
+
+  <!-- Template para lista de servicios -->
+  <template id="servicios-template">
+    <h3>🧾 Servicios disponibles</h3>
+    <button id="btn-nuevo-servicio">➕ Nuevo servicio</button>
+    <ul id="lista-servicios"></ul>
+    <div id="form-servicio-container"></div>
+    <div id="form-editar-servicio-container"></div>
+  </template>
+
+  <!-- Template para item de servicio -->
+  <template id="servicio-item-template">
+    <li class="servicio-item">
+      <strong class="servicio-nombre"></strong> – <span class="servicio-precio"></span><br>
+      <span class="servicio-duracion"></span><br>
+      <span class="servicio-descripcion"></span>
+      <div class="servicio-imagen"></div>
+      <div class="servicio-acciones">
+        <button class="btn-action btn-edit" data-action="editar">✏️ Editar</button>
+        <button class="btn-action btn-delete" data-action="eliminar">🗑️ Eliminar</button>
+      </div>
+    </li>
+  </template>
+
+  <!-- Template para formulario de usuario -->
+  <template id="form-usuario-template">
+    <h4>➕ Crear nuevo usuario</h4>
+    <form id="form-usuario">
+      <label>Nombre:</label>
+      <input type="text" name="nombre" required />
+      <label>Correo:</label>
+      <input type="email" name="email" required />
+      <label>Contraseña:</label>
+      <input type="password" name="password" required />
+      <label>Rol:</label>
+      <select name="rol">
+        <option value="cliente">Cliente</option>
+        <option value="barbero">Barbero</option>
+        <option value="admin">Admin</option>
+      </select>
+      <div class="form-buttons">
+        <button type="submit">Guardar</button>
+        <button type="button" id="cancelar-nuevo-usuario">Cancelar</button>
+      </div>
+    </form>
+    <div id="feedback-usuario"></div>
+  </template>
+
+  <!-- Template para formulario de edición de usuario -->
+  <template id="form-editar-usuario-template">
+    <h3>✏️ Editar usuario</h3>
+    <form id="form-editar-usuario">
+      <label>Nombre:</label>
+      <input type="text" name="nombre" required />
+      <label>Correo:</label>
+      <input type="email" name="email" required />
+      <label>Rol:</label>
+      <select name="rol">
+        <option value="cliente">Cliente</option>
+        <option value="barbero">Barbero</option>
+        <option value="admin">Admin</option>
+      </select>
+      <div class="form-buttons">
+        <button type="submit">Actualizar</button>
+        <button type="button" onclick="cancelarEdicionUsuario()">Cancelar</button>
+      </div>
+    </form>
+    <div id="feedback-edicion"></div>
+  </template>
+
+  <!-- Template para formulario de barbero -->
+  <template id="form-barbero-template">
+    <h4>➕ Crear nuevo barbero</h4>
+    <form id="form-barbero">
+      <label>Nombre:</label>
+      <input type="text" name="nombre" required />
+      <label>Correo:</label>
+      <input type="email" name="email" required />
+      <label>Contraseña:</label>
+      <input type="password" name="password" required />
+      <div class="form-buttons">
+        <button type="submit">Guardar</button>
+        <button type="button" id="cancelar-nuevo-barbero">Cancelar</button>
+      </div>
+    </form>
+    <div id="feedback-barbero"></div>
+  </template>
+
+  <!-- Template para formulario de edición de barbero -->
+  <template id="form-editar-barbero-template">
+    <h3>✏️ Editar barbero</h3>
+    <form id="form-editar-barbero">
+      <label>Nombre:</label>
+      <input type="text" name="nombre" required />
+      <label>Correo:</label>
+      <input type="email" name="email" required />
+      <div class="form-buttons">
+        <button type="submit">Actualizar</button>
+        <button type="button" onclick="cancelarEdicionBarbero()">Cancelar</button>
+      </div>
+    </form>
+    <div id="feedback-edicion-barbero"></div>
+  </template>
+
+  <!-- Template para formulario de servicio -->
+  <template id="form-servicio-template">
+    <h4>➕ Crear nuevo servicio</h4>
+    <form id="form-nuevo-servicio">
+      <label>Nombre:</label>
+      <input type="text" name="nombre" required />
+      <label>Precio (C$):</label>
+      <input type="number" name="precio" min="0" step="0.01" required />
+      <label>Duración (min):</label>
+      <input type="number" name="duracion" min="0" step="1" required />
+      <label>Descripción:</label>
+      <input type="text" name="descripcion" />
+      <label>Imagen (URL):</label>
+      <input type="text" name="imagen" placeholder="https://..." />
+      <div class="form-buttons">
+        <button type="submit">Guardar</button>
+        <button type="button" id="cancelar-nuevo-servicio">Cancelar</button>
+      </div>
+    </form>
+    <div id="feedback-servicio"></div>
+  </template>
+
+  <!-- Template para formulario de edición de servicio -->
+  <template id="form-editar-servicio-template">
+    <h3>✏️ Editar servicio</h3>
+    <form id="form-editar-servicio">
+      <label>Nombre:</label>
+      <input type="text" name="nombre" required />
+      <label>Precio (C$):</label>
+      <input type="number" name="precio" min="0" step="0.01" required />
+      <label>Duración (min):</label>
+      <input type="number" name="duracion" min="0" step="1" required />
+      <label>Descripción:</label>
+      <input type="text" name="descripcion" />
+      <label>Imagen (URL):</label>
+      <input type="text" name="imagen" />
+      <div class="form-buttons">
+        <button type="submit">Actualizar</button>
+        <button type="button" onclick="cancelarEdicionServicio()">Cancelar</button>
+      </div>
+    </form>
+    <div id="feedback-editar-servicio"></div>
+  </template>
+
+  <!-- Template para lista de citas -->
+  <template id="citas-template">
+    <h3>📋 Citas programadas</h3>
+    <div id="lista-citas"></div>
+  </template>
+
+  <!-- Template para item de cita -->
+  <template id="cita-item-template">
+    <div class="info-block">
+      <h4 class="cita-fecha-hora"></h4>
+      <p><strong>Cliente:</strong> <span class="cita-cliente"></span></p>
+      <p><strong>Barbero:</strong> <span class="cita-barbero"></span></p>
+      <p><strong>Servicio:</strong> <span class="cita-servicio"></span></p>
+      <p><strong>Estado:</strong> <span class="cita-estado"></span></p>
+    </div>
+  </template>
+
+  <script src="admin.js"></script>
+  <script src="theme.js"></script>
+  
+</body>
+</html>

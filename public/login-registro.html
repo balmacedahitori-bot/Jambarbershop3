@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>JamBarber - Login</title>
+  <link rel="shortcut icon" href="img/Logo_barberia_Jam.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="login-registro.css" />
+</head>
+<body>
+
+  <div class="wrapper">
+
+    <!-- Login -->
+    <div class="form-wrapper sign-in">
+      <form id="loginForm">
+        <h2>Iniciar Sesión</h2>
+
+        <div class="input-group">
+          <input type="email" id="email" placeholder=" " required />
+          <label for="email">Correo electrónico</label>
+        </div>
+
+        <div class="input-group">
+          <input type="password" id="password" placeholder=" " required />
+          <label for="password">Contraseña</label>
+        </div>
+
+        <div class="remember">
+          <label><input type="checkbox" /> Recordarme</label>
+        </div>
+
+        <button type="submit">Entrar</button>
+
+        <p id="login-error" class="login-password-error"></p>
+
+        <div class="signUp-link">
+          <p>¿Aún no tienes una cuenta? <a href="#" id="showRegister">Regístrate</a></p>
+        </div>
+      </form>
+    </div>
+
+    <!-- Registro -->
+    <div class="form-wrapper sign-up">
+      <form id="signupForm">
+        <h2>Registrarse</h2>
+
+        <div class="input-group">
+          <input type="text" id="name" placeholder=" " required />
+          <label for="name">Nombre completo</label>
+        </div>
+
+        <div class="input-group">
+          <input type="email" id="signup-email" placeholder=" " required />
+          <label for="signup-email">Correo electrónico</label>
+        </div>
+
+        <div class="input-group">
+          <input type="password" id="signup-password" placeholder=" " required />
+          <label for="signup-password">Contraseña</label>
+        </div>
+
+        <button type="submit">Registrarse</button>
+
+        <p id="register-error" class="login-password-error"></p>
+
+        <div class="signIn-link">
+          <p>¿Ya tienes cuenta? <a href="#" id="showLogin">Inicia sesión</a></p>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+  <footer class="footer-barberia">
+    © 2025 JamBarber - Todos los derechos reservados
+  </footer>
+
+
+  <!-- Scripts externos para login y registro -->
+  <script src="login-registro.js"></script>
+
+</body>
+</html>
