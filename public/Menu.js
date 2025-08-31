@@ -1,21 +1,32 @@
+// ===== Configuración BASE_URL =====
+const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+
+// En local usamos localhost, en producción tu backend de Railway
+const BASE_URL = isLocal
+  ? "http://localhost:3000"
+  : "https://jambarbershop3-production-07f3.up.railway.app";
+
+
+// ===== Verificar sesión y actualizar botón Login =====
 window.addEventListener('DOMContentLoaded', () => {
   const token = localStorage.getItem('token');
   const loginBtn = document.getElementById('btn-login');
 
-  // Si no hay token, el botón permanece como "Login" y va a login-registro.html
+  if (!loginBtn) return;
+
+  // Si no hay token → botón normal "Login"
   if (!token) {
     loginBtn.textContent = 'Login';
     loginBtn.href = 'login-registro.html';
     return;
   }
 
-  // Si hay token, validar y cambiar el botón según el rol
-  fetch('http://localhost:3000/api/auth/perfil', {
+  // Si hay token → validar contra backend
+  fetch(`${BASE_URL}/api/auth/perfil`, {
     headers: { Authorization: `Bearer ${token}` }
   })
   .then(res => res.ok ? res.json() : Promise.reject('Token inválido'))
   .then(user => {
-    // Actualizar el texto y redirección del botón según el rol
     if (user.role === 'admin') {
       loginBtn.textContent = 'Panel Admin';
       loginBtn.href = 'admin.html';
@@ -26,35 +37,35 @@ window.addEventListener('DOMContentLoaded', () => {
       loginBtn.textContent = 'Mi Panel';
       loginBtn.href = 'cliente.html';
     }
-    
-    // Agregar funcionalidad de cerrar sesión al botón
+
+    // Cerrar sesión con Ctrl + Click
     loginBtn.addEventListener('click', function(e) {
-      // Si se mantiene presionado Ctrl, cerrar sesión
       if (e.ctrlKey) {
         e.preventDefault();
         localStorage.removeItem('token');
-        alert('Sesión cerrada. Recarga la página para ver el formulario de login.');
+        alert('Sesión cerrada. Recarga la página para ver el login.');
         location.reload();
       }
     });
   })
   .catch(err => {
     console.warn('No se pudo validar sesión:', err);
-    localStorage.removeItem('token'); // Limpieza si el token no sirve
-    // Restaurar el botón a Login si el token es inválido
+    localStorage.removeItem('token');
     loginBtn.textContent = 'Login';
     loginBtn.href = 'login-registro.html';
   });
 });
 
 
-
+// ===== Cargar servicios públicos (grid principal) =====
 async function cargarServiciosPublicos() {
   try {
-    const res = await fetch('http://localhost:3000/api/servicios/public');
+    const res = await fetch(`${BASE_URL}/api/servicios/public`);
     const servicios = await res.json();
 
     const contenedor = document.getElementById('publicServicesGrid');
+    if (!contenedor) return;
+
     contenedor.innerHTML = '';
 
     servicios.forEach(servicio => {
@@ -77,96 +88,67 @@ async function cargarServiciosPublicos() {
   }
 }
 
-// Ejecutar al cargar la página
+
+// ===== Ejecutar al cargar la página =====
 window.addEventListener('DOMContentLoaded', () => {
-  cargarServiciosPublicos(); // 🔥 esto se llama automáticamente al abrir la web
-  
-  // Configurar enlaces de redes sociales
+  cargarServiciosPublicos();
   configurarRedesSociales();
-  
-  // Configurar scroll suave para navegación
   configurarScrollSuave();
 });
 
-// Función para configurar los enlaces de redes sociales
+
+// ===== Configuración redes sociales =====
 function configurarRedesSociales() {
   const facebookIcon = document.querySelector('.icon.facebook');
   const whatsappIcon = document.querySelector('.icon.whatsapp');
   const instagramIcon = document.querySelector('.icon.instagram');
 
-  // Enlaces de redes sociales (reemplaza con tus URLs reales)
   const redesSociales = {
     facebook: 'https://www.facebook.com/jeffrje?locale=es_LA',
     whatsapp: 'https://wa.me/50512345678?text=Hola,%20me%20interesa%20agendar%20una%20cita',
     instagram: 'https://www.instagram.com'
   };
 
-  // Agregar eventos click
-  if (facebookIcon) {
-    facebookIcon.addEventListener('click', () => {
-      window.open(redesSociales.facebook, '_blank');
-    });
-  }
-
-  if (whatsappIcon) {
-    whatsappIcon.addEventListener('click', () => {
-      window.open(redesSociales.whatsapp, '_blank');
-    });
-  }
-
-  if (instagramIcon) {
-    instagramIcon.addEventListener('click', () => {
-      window.open(redesSociales.instagram, '_blank');
-    });
-  }
+  if (facebookIcon) facebookIcon.addEventListener('click', () => window.open(redesSociales.facebook, '_blank'));
+  if (whatsappIcon) whatsappIcon.addEventListener('click', () => window.open(redesSociales.whatsapp, '_blank'));
+  if (instagramIcon) instagramIcon.addEventListener('click', () => window.open(redesSociales.instagram, '_blank'));
 }
 
-// Función para configurar scroll suave en la navegación
+
+// ===== Scroll suave en navegación =====
 function configurarScrollSuave() {
-  // Seleccionar todos los enlaces del menú de navegación
   const enlacesNavegacion = document.querySelectorAll('.nav a[href^="#"]');
-  
+
   enlacesNavegacion.forEach(enlace => {
     enlace.addEventListener('click', function(e) {
       e.preventDefault();
-      
-      // Obtener el ID de la sección objetivo
+
       const seccionObjetivo = this.getAttribute('href').substring(1);
       const seccion = document.getElementById(seccionObjetivo);
-      
+
       if (seccion) {
-        // Calcular la posición de la sección con offset para el header
         const headerHeight = document.querySelector('.container-header').offsetHeight;
-        const posicionSeccion = seccion.offsetTop - headerHeight - 20; // 20px de margen adicional
-        
-        // Realizar scroll suave
-        window.scrollTo({
-          top: posicionSeccion,
-          behavior: 'smooth'
-        });
-        
-        // Opcional: Actualizar la URL sin recargar la página
+        const posicionSeccion = seccion.offsetTop - headerHeight - 20;
+
+        window.scrollTo({ top: posicionSeccion, behavior: 'smooth' });
         history.pushState(null, null, `#${seccionObjetivo}`);
       }
     });
   });
-  
-  // Agregar efecto de resaltado activo al menú
+
   window.addEventListener('scroll', function() {
     const secciones = document.querySelectorAll('section[id]');
     const enlaces = document.querySelectorAll('.nav a[href^="#"]');
-    
+
     let seccionActual = '';
-    
+
     secciones.forEach(seccion => {
       const seccionTop = seccion.offsetTop;
-      const seccionAltura = seccion.clientHeight;
-      
       if (window.pageYOffset >= (seccionTop - 200)) {
         seccionActual = seccion.getAttribute('id');
       }
     });
-    
+
     enlaces.forEach(enlace => {
       enlace.classList.remove('active');
       if (enlace.getAttribute('href') === `#${seccionActual}`) {
@@ -176,7 +158,8 @@ function configurarScrollSuave() {
   });
 }
 
-// Carga dinámica de servicios para la página pública
+
+// ===== Cargar servicios en sección pública =====
 window.addEventListener('DOMContentLoaded', async () => {
   const grid = document.getElementById('services-grid-public');
   if (!grid) return;
@@ -184,7 +167,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   grid.innerHTML = '<p style="color:#ccc">Cargando servicios...</p>';
 
   try {
-    const res = await fetch('http://localhost:3000/api/servicios/public');
+    const res = await fetch(`${BASE_URL}/api/servicios/public`);
     if (!res.ok) throw new Error('No se pudo cargar');
     const servicios = await res.json();
 
@@ -222,5 +205,4 @@ window.addEventListener('DOMContentLoaded', async () => {
     grid.innerHTML = '<p style="color:#e63946">Error al cargar servicios.</p>';
   }
 });
-
 
