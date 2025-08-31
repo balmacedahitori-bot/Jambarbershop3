@@ -1,14 +1,11 @@
 // ===== Configuración BASE_URL =====
-// Detectamos si estamos en local o en producción
 const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
 
-// 🚨 OPCIÓN 1: Si frontend y backend están en la misma app en Railway -> BASE_URL = "" en producción
-// 🚨 OPCIÓN 2: Si frontend está en otro hosting (ej. GitHub Pages / Vercel) -> reemplaza la URL de Railway
+// 👇 Local apunta a tu servidor en localhost
+// 👇 Producción apunta a tu backend en Railway
 const BASE_URL = isLocal
-  ? "http://localhost:3000" // Local
-  : ""; // Producción (mismo dominio en Railway). 
-// Si tu frontend está separado, cámbialo por:
-// "https://jambarbershop3-production.up.railway.app"
+  ? "http://localhost:3000"
+  : "https://jambarbershop3-production-07f3.up.railway.app";
 
 // ===== Formulario de login =====
 document.addEventListener("DOMContentLoaded", () => {
@@ -21,7 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
 
-    // Limpiar errores anteriores
     errorMsg.textContent = "";
 
     if (!email || !password) {
@@ -95,7 +91,7 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
     }
 
     alert("Cuenta creada con éxito, inicia sesión.");
-    document.querySelector(".wrapper").classList.remove("active"); // Regresa al login
+    document.querySelector(".wrapper").classList.remove("active");
   } catch (err) {
     console.error("Error de registro:", err);
     alert("No se pudo registrar el usuario.");
@@ -129,7 +125,6 @@ function clearErrors() {
 // ===== Manejo del botón atrás del navegador =====
 if (window.history.length <= 1) {
   window.addEventListener("popstate", () => {
-    window.location.href = "Menu.html"; // Página principal
+    window.location.href = "Menu.html";
   });
 }
-
