@@ -4,8 +4,8 @@ const isLocal = window.location.hostname === "localhost" || window.location.host
 // 👇 Local apunta a tu servidor en localhost
 // 👇 Producción apunta a tu backend en Railway
 const BASE_URL = isLocal
-  ? "http://localhost:3000"
-  : "https://jambarbershop3-production-58dd.up.railway.app";
+  ? "http://localhost:3000" // tu servidor local
+  : "https://jambarbershop3-production-58dd.up.railway.app"; // backend en Railway real
 
 // ===== Formulario de login =====
 document.addEventListener("DOMContentLoaded", () => {
